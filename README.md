@@ -5,7 +5,7 @@
 [![dependencies](https://img.shields.io/david/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint/blob/master/package.json)
 [![devDependencies](https://img.shields.io/david/dev/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint/blob/master/package.json)
 
-A React hook (>=16.8) for getting the current responsive media breakpoint, successor for [breakpoint-observer](https://www.npmjs.com/package/breakpoint-observer).
+A React hook (>=16.8) for getting the current responsive media breakpoint, successor to [breakpoint-observer](https://www.npmjs.com/package/breakpoint-observer).
 
 ## Usage
 
@@ -17,9 +17,18 @@ import useBreakpoint from 'use-breakpoint';
 ...
 
 const CurrentBreakpoint = () => {
-  const { breakpoint, maxWidth, minWidth } = useBreakpoint({ mobile: 0, tablet: 768, desktop: 1280 }, 'desktop');
+  const {
+    breakpoint,
+    maxWidth,
+    minWidth
+  } = useBreakpoint(
+    { mobile: 0, tablet: 768, desktop: 1280 },
+    'desktop'
+  );
 
-  return <p>The current breakpoint is {breakpoint}!</p>}
+  return (
+    <p>The current breakpoint is {breakpoint}!</p>
+  );
 };
 ```
 
