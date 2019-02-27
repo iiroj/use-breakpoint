@@ -90,7 +90,7 @@ export default function useBreakpoint<C extends Config>(
       mediaQuery.addListener(handleChange);
       return () => mediaQuery.removeListener(handleChange);
     });
-  }, []);
+  }, [config]);
 
   return currentBreakpoint;
 }
