@@ -1,31 +1,53 @@
 version: 2.1
 
-jobs:
-  CI:
+executors:
+  worker:
     docker:
       - image: circleci/node
     working_directory: ~/ci
+
+jobs:
+  build:
+    executor: worker
     steps:
       - checkout
-
       - restore_cache:
           keys:
           - node_modules-{{ checksum "package.json" }}
           - node_modules-
-
       - run: npm install
-
       - save_cache:
           paths:
             - node_modules
           key: node_modules-{{ checksum "package.json" }}
-
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm run build
+      - run:
+          name: build
+          command: npm run build
+      - persist_to_workspace:
+          root: ~/ci
+          paths: .
+
+  publish:
+    executor: worker
+    context: npm token
+    steps:
+      - attach_workspace:
+          at: ~/ci
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run:
+          name: publish
+          command: npm publish
 
 workflows:
   version: 2
-  CI:
+  build_and_publish:
     jobs:
-      - CI
+      - build
+      - publish:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v[0-9]\.[0-9]\.[0-9]$/
