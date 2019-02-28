@@ -15,13 +15,19 @@ jobs:
           keys:
           - node_modules-{{ checksum "package.json" }}
           - node_modules-
-      - run: npm install
+      - run:
+          name: install
+          command: npm install
       - save_cache:
           paths:
             - node_modules
           key: node_modules-{{ checksum "package.json" }}
-      - run: npm run lint
-      - run: npm run typecheck
+      - run:
+          name: lint
+          command: npm run lint
+      - run:
+          name: typecheck
+          command: npm run typecheck
       - run:
           name: build
           command: npm run build
@@ -34,7 +40,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/ci
-      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run:
+          name: login
+          command: npm config set "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"
       - run:
           name: publish
           command: npm publish
