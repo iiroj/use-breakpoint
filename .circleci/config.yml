@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  ci:
+  CI:
     docker:
       - image: circleci/node
     working_directory: ~/ci
@@ -23,3 +23,9 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+
+workflows:
+  version: 2
+  CI:
+    jobs:
+      - CI
