@@ -1,5 +1,6 @@
 # use-breakpoint
 
+[![CircleCI](https://circleci.com/gh/iiroj/use-breakpoint.svg?style=shield)](https://circleci.com/gh/iiroj/use-breakpoint)
 [![version](https://img.shields.io/npm/v/use-breakpoint.svg)](https://www.npmjs.com/package/use-breakpoint)
 [![code size](https://img.shields.io/github/languages/code-size/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint)
 [![dependencies](https://img.shields.io/david/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint/blob/master/package.json)

@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  ci:
+    docker:
+      - image: circleci/node
+    working_directory: ~/ci
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - node_modules-{{ checksum "package.json" }}
+          - node_modules-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: node_modules-{{ checksum "package.json" }}
+
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
