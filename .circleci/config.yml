@@ -7,7 +7,7 @@ executors:
     working_directory: ~/ci
 
 jobs:
-  build:
+  install:
     executor: worker
     steps:
       - checkout
@@ -22,12 +22,28 @@ jobs:
           paths:
             - node_modules
           key: node_modules-{{ checksum "package.json" }}
+
+  test:
+    executor: worker
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - node_modules-{{ checksum "package.json" }}
       - run:
           name: lint
           command: npm run lint
       - run:
           name: typecheck
           command: npm run typecheck
+
+  build:
+    executor: worker
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - node_modules-{{ checksum "package.json" }}
       - run:
           name: build
           command: npm run build
@@ -49,13 +65,31 @@ jobs:
 
 workflows:
   version: 2
-  build_and_publish:
+  ci:
     jobs:
-      - build
+      - install:
+          filters:
+              tags:
+                only: /.*/
+      - test:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /.*/
+      - build:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /.*/
       - publish:
           requires:
+            - test
             - build
           context: npm token
           filters:
             tags:
-              only: /^v[0-9]\.[0-9]\.[0-9]$/
+              only: /^v[0-9].*/
+            branches:
+              ignore: /.*/
