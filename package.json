@@ -33,19 +33,19 @@
     "react-dom": ">=16.8"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.0.2",
+    "@storybook/addon-actions": "^5.0.5",
     "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-storysource": "^5.0.2",
-    "@storybook/react": "^5.0.2",
+    "@storybook/addon-storysource": "^5.0.5",
+    "@storybook/react": "^5.0.5",
     "@types/react": "^16.8.8",
-    "@types/react-dom": "^16.8.2",
+    "@types/react-dom": "^16.8.3",
     "@types/storybook__react": "^4.0.1",
     "babel-loader": "^8.0.5",
     "prettier": "^1.16.4",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "rollup": "^1.6.0",
-    "rollup-plugin-commonjs": "^9.2.1",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "rollup": "^1.7.3",
+    "rollup-plugin-commonjs": "^9.2.2",
     "rollup-plugin-node-resolve": "^4.0.1",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-typescript2": "^0.20.1",
@@ -55,8 +55,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^8.0.1",
     "tslint-plugin-prettier": "^2.0.1",
-    "tslint-react": "^3.6.0",
-    "typescript": "^3.3.3333"
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.3.4000"
   },
   "keywords": [
     "babel",
