@@ -24,15 +24,33 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "watch": "rollup -cw",
     "build": "rollup -c",
-    "preversion": "npm run lint && npm run build",
-    "version": "standard-version",
-    "push": "git push --follow-tags origin master"
+    "version": "standard-version --no-verify"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "npm run lint"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm run lint && npm run build"
+    }
   },
   "peerDependencies": {
     "react": ">=16.8",
     "react-dom": ">=16.8"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^8.0.0",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-console": "^1.1.1",
     "@storybook/addon-storysource": "^5.1.9",
@@ -41,6 +59,9 @@
     "@types/react-dom": "^16.8.4",
     "@types/storybook__react": "^4.0.2",
     "babel-loader": "^8.0.6",
+    "commitlint": "^8.0.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.1.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
