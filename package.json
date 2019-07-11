@@ -1,6 +1,6 @@
 {
   "name": "use-breakpoint",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "A React hook for getting the current responsive media breakpoint",
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "license": "MIT",
