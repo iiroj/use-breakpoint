@@ -1,62 +1,57 @@
-name: Build
+name: Main
 
 on:
-  - push
-  - pull_request
+  pull_request:
+    branches:
+    - "*"
+  push:
+    branches:
+    - "*"
+    tags:
+    - v*
 
 jobs:
-  install:
-    container:
-      image: node:alpine
-      volumes:
-        - runner:/home/runner
+  build:
+    name: Build
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: npm ci
-
-  lint:
-    container:
-      image: node:alpine
-      volumes:
-        - runner:/home/runner
-    needs:
-      - install
-    steps:
-      - run: npm run lint
-  
-  typecheck:
-    container:
-      image: node:alpine
-      volumes:
-        - runner:/home/runner
-    needs:
-      - install
-    steps:
-      - run: npm run typecheck
-
-  build:
-    container:
-      image: node:alpine
-      volumes:
-        - runner:/home/runner
-    needs:
-      - lint
-      - typecheck
-    steps:
-      - run: npm run build
-
-  pack:
-    container:
-      image: node:alpine
-      volumes:
-        - runner:/home/runner
-    needs:
-      - build
-    steps:
-      - run: |
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build 
+        run: |
+          npm run build
           npm pack
           mv *.tgz package.tgz
-      - uses: actions/upload-artifact@v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
         with:
-          name: package
+          name: artifact
           path: package.tgz
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm
+        if: startsWith(github.ref, 'refs/tags/')
+        run: npm publish package.tgz --access public
