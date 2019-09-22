@@ -43,7 +43,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          registry-url: https://registry.npmjs.org
       - name: Publish to npm
         run: npm publish package.tgz --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
