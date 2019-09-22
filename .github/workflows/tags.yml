@@ -36,16 +36,17 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
           name: artifact
+      - name: Extract package from artifact
+        run: tar xf artifact/package.tgz --strip 1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org
       - name: Publish to npm
-        run: npm publish artifact/package.tgz --access public
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
