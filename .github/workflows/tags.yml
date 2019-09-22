@@ -1,14 +1,9 @@
-name: Main
+name: Tags
 
 on:
-  pull_request:
-    branches:
-    - "*"
   push:
-    branches:
-    - "*"
-    tags-ignore:
-    - "*"
+    tags:
+    - v*
 
 jobs:
   build:
@@ -35,3 +30,20 @@ jobs:
         with:
           name: artifact
           path: package.tgz
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm
+        run: npm publish package.tgz --access public
