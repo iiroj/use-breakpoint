@@ -36,6 +36,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
