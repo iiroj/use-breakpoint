@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.20](https://github.com/iiroj/use-breakpoint/compare/v1.0.19...v1.0.20) (2019-09-22)
+
+
+### Bug Fixes
+
+* issues with typecheck ([289c12d](https://github.com/iiroj/use-breakpoint/commit/289c12d))
+
 ### [1.0.19](https://github.com/iiroj/use-breakpoint/compare/v1.0.18...v1.0.19) (2019-07-23)
 
 
