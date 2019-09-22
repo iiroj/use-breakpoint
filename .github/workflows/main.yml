@@ -1,21 +1,58 @@
-name: Build & Test
+name: Build
 
 on:
   - push
+  - pull_request
 
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-latest
+  install:
+    container:
+      image: node:alpine
+      volumes:
+        - runner:/home/runner
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
       - run: npm ci
+
+  lint:
+    container:
+      image: node:alpine
+      volumes:
+        - runner:/home/runner
+    needs:
+      - install
+    steps:
       - run: npm run lint
+  
+  typecheck:
+    container:
+      image: node:alpine
+      volumes:
+        - runner:/home/runner
+    needs:
+      - install
+    steps:
       - run: npm run typecheck
+
+  build:
+    container:
+      image: node:alpine
+      volumes:
+        - runner:/home/runner
+    needs:
+      - lint
+      - typecheck
+    steps:
       - run: npm run build
+
+  pack:
+    container:
+      image: node:alpine
+      volumes:
+        - runner:/home/runner
+    needs:
+      - build
+    steps:
       - run: |
           npm pack
           mv *.tgz package.tgz

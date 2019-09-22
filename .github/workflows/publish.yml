@@ -8,7 +8,7 @@ on:
 jobs:
   publish:
     name: Publish
-    needs: build # From main.yml
+    needs: pack # From main.yml
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v1
