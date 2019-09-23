@@ -66,7 +66,7 @@ jobs:
         run: tar xf artifact/package.tgz --strip 1
       - name: Rename package to match GitHub repository
         run: |-
-          sed -i "" -E "s|\"name\": \".*\"|\"name\": \"@${GITHUB_REPOSITORY}\"|" package.json
+          sed -i"" -E "s|\"name\": \".*\"|\"name\": \"@${GITHUB_REPOSITORY}\"|" package.json
       - uses: actions/setup-node@v1
         with:
           node-version: 12
