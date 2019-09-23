@@ -31,8 +31,8 @@ jobs:
           name: artifact
           path: package.tgz
 
-  publish:
-    name: Publish
+  publish-npm:
+    name: Publish to npm
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -46,7 +46,34 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org
-      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-gpr:
+    name: Publish to GitHub Package Registry
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - name: Extract package from artifact
+        run: tar xf artifact/package.tgz --strip 1
+      - name: Rename package to match GitHub repository
+        run: |-
+          sed -i "" -E "s|\"name\": \".*\"|\"name\": \"@${GITHUB_REPOSITORY}\"|" package.json
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
