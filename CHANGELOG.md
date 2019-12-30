@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/iiroj/use-breakpoint/compare/v1.0.31...v1.1.0) (2019-12-30)
+
+
+### Features
+
+* use mjs extension for esm module ([31bc908](https://github.com/iiroj/use-breakpoint/commit/31bc9080d9c2c34c3526fa5ae7322006f29bfd6c))
+
 ### [1.0.31](https://github.com/iiroj/use-breakpoint/compare/v1.0.30...v1.0.31) (2019-12-01)
 
 ### [1.0.30](https://github.com/iiroj/use-breakpoint/compare/v1.0.29...v1.0.30) (2019-10-26)
