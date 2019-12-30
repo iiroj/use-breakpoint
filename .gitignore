@@ -1,7 +1,7 @@
-.cache
-.rpt2_cache
-node_modules
-index.d.ts
-index.esm.js
-index.umd.js
-index.js
+/.cache
+/.rpt2_cache
+/node_modules
+/index.d.ts
+/index.mjs
+/index.umd.js
+/index.js

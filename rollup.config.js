@@ -12,6 +12,7 @@ const external = [...Object.keys(pkg.peerDependencies)];
 const plugins = [
   typescript({
     include: "index.ts",
+    tsconfig: production ? "tsconfig.build.json" : "tsconfig.json",
     typescript: require("typescript")
   }),
   production && terser()
@@ -36,7 +37,7 @@ export default [
       {
         ...output,
         file: pkg.module,
-        format: "es"
+        format: "esm"
       }
     ],
     external,

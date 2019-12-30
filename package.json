@@ -8,12 +8,12 @@
   "repository": "github:iiroj/use-breakpoint",
   "bugs": "https://github.com/iiroj/use-breakpoint/issues",
   "main": "index.js",
-  "module": "index.esm.js",
+  "module": "index.mjs",
   "browser": "index.umd.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.esm.js",
+    "index.mjs",
     "index.umd.js",
     "index.d.ts"
   ],
