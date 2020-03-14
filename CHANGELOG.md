@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/iiroj/use-breakpoint/compare/v1.1.0...v1.1.1) (2020-03-14)
+
 ## [1.1.0](https://github.com/iiroj/use-breakpoint/compare/v1.0.31...v1.1.0) (2019-12-30)
 
 
