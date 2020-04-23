@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import React from "react";
+const { useEffect, useMemo, useState } = React;
 
 export type Config = {
   readonly [key: string]: number;
