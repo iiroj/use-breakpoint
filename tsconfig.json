@@ -1,14 +1,28 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "jsx": "react",
     "lib": ["dom", "es6"],
     "module": "es6",
     "moduleResolution": "node",
+    "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
     "target": "es5"
-  }
+  },
+  "include": [
+    ".storybook/*.js",
+    "*.js",
+    "*.ts",
+    "*.tsx",
+  ],
+  "exclude": [
+    "/index.d.ts",
+    "/index.js",
+    "/index.mjs",
+    "/index.umd.js",
+  ]
 }

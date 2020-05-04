@@ -13,16 +13,16 @@ const plugins = [
   typescript({
     include: "index.ts",
     tsconfig: production ? "tsconfig.build.json" : "tsconfig.json",
-    typescript: require("typescript")
+    typescript: require("typescript"),
   }),
-  production && terser()
+  production && terser(),
 ];
 
 const output = {
   exports: "named",
   globals: {
-    react: "React"
-  }
+    react: "React",
+  },
 };
 
 export default [
@@ -32,16 +32,16 @@ export default [
       {
         ...output,
         file: pkg.main,
-        format: "cjs"
+        format: "cjs",
       },
       {
         ...output,
         file: pkg.module,
-        format: "esm"
-      }
+        format: "esm",
+      },
     ],
     external,
-    plugins
+    plugins,
   },
   {
     input: "index.ts",
@@ -49,9 +49,9 @@ export default [
       ...output,
       file: pkg.browser,
       format: "umd",
-      name: "useBreakpoint"
+      name: "useBreakpoint",
     },
     external,
-    plugins: [resolve(), commonjs(), ...plugins]
-  }
+    plugins: [resolve(), commonjs(), ...plugins],
+  },
 ];

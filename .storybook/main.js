@@ -1,7 +1,5 @@
 module.exports = {
-  addons: [
-    "@storybook/addon-storysource",
-  ],
+  addons: ["@storybook/addon-storysource"],
   stories: ["../story.tsx"],
   webpack: (config) => {
     config.module.rules.push(

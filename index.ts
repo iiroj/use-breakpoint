@@ -43,7 +43,7 @@ const createMediaQueries = (breakpoints: Config) => {
       breakpoint,
       maxWidth,
       minWidth,
-      query
+      query,
     };
 
     return mediaQuery;
@@ -67,7 +67,7 @@ export default function useBreakpoint<C extends Config>(
     if (!defaultBreakpoint) return undefined;
 
     const { query, ...breakpoint } = mediaQueries.find(
-      query => query.breakpoint === defaultBreakpoint
+      (query) => query.breakpoint === defaultBreakpoint
     )!;
 
     return breakpoint;
@@ -90,7 +90,7 @@ export default function useBreakpoint<C extends Config>(
       mediaQuery.addListener(handleChange);
       return () => mediaQuery.removeListener(handleChange);
     });
-  }, [config]);
+  }, [mediaQueries]);
 
   return currentBreakpoint;
 }
