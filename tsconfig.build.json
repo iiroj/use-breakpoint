@@ -3,5 +3,6 @@
   "compilerOptions": {
     "noEmit": false
   },
+  "include": ["index.ts"],
   "exclude": ["story.tsx"]
 }
