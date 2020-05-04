@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/iiroj/use-breakpoint/compare/v1.1.1...v1.1.2) (2020-05-04)
+
+
+### Bug Fixes
+
+* do not use .mjs extension for module field ([995c2ca](https://github.com/iiroj/use-breakpoint/commit/995c2ca938a2d85968f24b100af90fa704086a54))
+* replace tslint with eslint and fix errors ([5b9d1bf](https://github.com/iiroj/use-breakpoint/commit/5b9d1bfbeadec58fa0927af7be87dea02cf84372))
+* unsubscribe from window.matchMedia when unmounting ([b0ce1b0](https://github.com/iiroj/use-breakpoint/commit/b0ce1b0ce79ce57a54064b8050e93b53d67c1a3d))
+* update storybook config ([f71801b](https://github.com/iiroj/use-breakpoint/commit/f71801b8ca7e697186b021cbf8da88da02fba9ba))
+
 ### [1.1.1](https://github.com/iiroj/use-breakpoint/compare/v1.1.0...v1.1.1) (2020-03-14)
 
 ## [1.1.0](https://github.com/iiroj/use-breakpoint/compare/v1.0.31...v1.1.0) (2019-12-30)
