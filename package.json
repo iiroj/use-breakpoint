@@ -52,7 +52,6 @@
     "react-dom": ">=16.8"
   },
   "devDependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "0.26.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@rollup/plugin-commonjs": "15.1.0",
     "@rollup/plugin-node-resolve": "9.0.0",
