@@ -13,16 +13,15 @@
     "target": "es2020"
   },
   "include": [
-    ".storybook/*.js",
-    "lib/*",
-    "*.js",
-    "*.ts",
-    "*.tsx"
+    "./.storybook/*.js",
+    "./**/*.js",
+    "./**/*.ts",
+    "./**/*.tsx"
   ],
   "exclude": [
-    "**/*.d.ts",
-    "/index.js",
-    "/index.esm.js",
-    "/index.umd.js",
+    "./lib/*.d.ts",
+    "./index.js",
+    "./index.esm.js",
+    "./index.umd.js",
   ]
 }

@@ -4,10 +4,7 @@
     "noEmit": false
   },
   "include": [
-    "lib/*",
-    "index.ts"
-  ],
-  "exclude": [
-    "story.tsx"
+    "./lib/*",
+    "./index.ts"
   ]
 }

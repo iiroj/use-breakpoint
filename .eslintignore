@@ -1,4 +1,4 @@
-/lib/*d.ts
+/lib/*.d.ts
 /index.js
 /index.esm.js
 /index.umd.js

@@ -1,11 +1,11 @@
 module.exports = {
-  addons: ["@storybook/addon-storysource"],
-  stories: ["../story.tsx"],
+  addons: ['@storybook/addon-storysource'],
+  stories: ['../story.tsx'],
   webpack: (config) => {
     config.module.rules.push(
       {
         test: /\.tsx?$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
         options: {
           transpileOnly: true,
         },
@@ -14,16 +14,16 @@ module.exports = {
         test: /story\.tsx?$/,
         loaders: [
           {
-            loader: require.resolve("@storybook/source-loader"),
-            options: { parser: "typescript" },
+            loader: require.resolve('@storybook/source-loader'),
+            options: { parser: 'typescript' },
           },
         ],
-        enforce: "pre",
+        enforce: 'pre',
       }
-    );
+    )
 
-    config.resolve.extensions.unshift(".ts", ".tsx");
+    config.resolve.extensions.unshift('.ts', '.tsx')
 
-    return config;
+    return config
   },
-};
+}

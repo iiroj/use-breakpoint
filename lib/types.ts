@@ -1,16 +1,16 @@
 export type Config = {
-  readonly [key: string]: number;
-};
+  readonly [key: string]: number
+}
 
 export type Breakpoint<C extends Config> = {
-  breakpoint: keyof C;
-  maxWidth?: number;
-  minWidth: C[keyof C];
-};
+  breakpoint: keyof C
+  maxWidth?: number
+  minWidth: C[keyof C]
+}
 
 export type MediaQuery<C extends Config> = {
-  breakpoint: keyof C;
-  maxWidth?: number;
-  minWidth: C[keyof C];
-  query: string;
-};
+  breakpoint: keyof C
+  maxWidth?: number
+  minWidth: C[keyof C]
+  query: string
+}
