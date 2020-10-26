@@ -104,7 +104,7 @@ export default function useBreakpoint<C extends Config>(
         setCurrentBreakpoint(breakpoint);
       }
     },
-    [setCurrentBreakpoint]
+    []
   );
 
   /**
