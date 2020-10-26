@@ -12,6 +12,7 @@
   "browser": "index.umd.js",
   "types": "index.d.ts",
   "files": [
+    "lib/*.d.ts",
     "index.js",
     "index.esm.js",
     "index.umd.js",

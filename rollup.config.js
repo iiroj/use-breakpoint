@@ -11,7 +11,6 @@ const external = [...Object.keys(pkg.peerDependencies)];
 
 const getPlugins = (declaration) => {
   const tsOptions = {
-    exclude: ["example/*"],
     sourceMap: false,
     tsconfig: "tsconfig.build.json",
     typescript: require("typescript"),

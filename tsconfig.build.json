@@ -3,6 +3,11 @@
   "compilerOptions": {
     "noEmit": false
   },
-  "include": ["index.ts"],
-  "exclude": ["story.tsx"]
+  "include": [
+    "lib/*",
+    "index.ts"
+  ],
+  "exclude": [
+    "story.tsx"
+  ]
 }

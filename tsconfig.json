@@ -3,7 +3,10 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
-    "lib": ["dom", "es6"],
+    "lib": [
+      "dom",
+      "es6"
+    ],
     "module": "es6",
     "moduleResolution": "node",
     "noEmit": true,
@@ -14,12 +17,13 @@
   },
   "include": [
     ".storybook/*.js",
+    "lib/*",
     "*.js",
     "*.ts",
-    "*.tsx",
+    "*.tsx"
   ],
   "exclude": [
-    "/index.d.ts",
+    "**/*.d.ts",
     "/index.js",
     "/index.esm.js",
     "/index.umd.js",
