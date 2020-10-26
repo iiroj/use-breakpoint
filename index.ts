@@ -21,7 +21,9 @@ type MediaQuery<C extends Config> = {
  * Create media query objects
  * @param breakpoints the list of configured breakpoint names and their pixel values
  */
-export const createMediaQueries = (breakpoints: Config) => {
+export const createMediaQueries = (
+  breakpoints: Config
+): MediaQuery<Config>[] => {
   const sortedBreakpoints = Object.keys(breakpoints).sort(
     (a, b) => breakpoints[b] - breakpoints[a]
   );
@@ -72,7 +74,7 @@ export default function useBreakpoint<C extends Config>(
 export default function useBreakpoint<C extends Config>(
   config: C,
   defaultBreakpoint?: keyof C
-) {
+): Breakpoint<C> | undefined {
   /**
    * Memoize list of calculated media queries from config
    */
