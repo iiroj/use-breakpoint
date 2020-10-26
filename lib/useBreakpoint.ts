@@ -37,53 +37,42 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   config: C,
   defaultBreakpoint?: D
 ): Return<C, D> => {
-  /**
-   * Memoize list of calculated media queries from config
-   */
+  /** Memoize list of calculated media queries from config */
   const mediaQueries = useMemo(() => createMediaQueries(config), [config]);
 
-  /**
-   * Get initial breakpoint value
-   */
+  /** Get initial breakpoint value */
   const [currentBreakpoint, setCurrentBreakpoint] = useState(() => {
-    if (!defaultBreakpoint) return undefined;
-
-    const { query, ...breakpoint } = mediaQueries.find(
-      (query) => query.breakpoint === defaultBreakpoint
-    )!;
-
-    return breakpoint as Breakpoint<C>;
+    if (defaultBreakpoint) {
+      const { query, ...breakpoint } = mediaQueries.find(
+        (query) => query.breakpoint === defaultBreakpoint
+      )!;
+      return breakpoint as Breakpoint<C>;
+    }
   });
 
-  /**
-   * If there's a match, update the current brekpoint
-   */
+  /** If there's a match, update the current breakpoint */
   const updateBreakpoint = useCallback(
-    ({ matches }: MediaQueryList, breakpoint: Breakpoint<C>) => {
-      if (matches) {
-        setCurrentBreakpoint(breakpoint);
-      }
-    },
+    ({ matches }: MediaQueryList, breakpoint: Breakpoint<C>) =>
+      void matches && setCurrentBreakpoint(breakpoint),
     []
   );
 
-  /**
-   * On changes to mediaQueries, subscribe to changes using window.matchMedia.
-   */
+  /** On changes to mediaQueries, subscribe to changes using window.matchMedia */
   useEffect(() => {
     const unsubscribers = mediaQueries.map(({ query, ...breakpoint }) => {
       const mediaQuery = window.matchMedia(query);
       updateBreakpoint(mediaQuery, breakpoint as Breakpoint<C>);
       const handleChange = () =>
-        updateBreakpoint(mediaQuery, breakpoint as Breakpoint<C>);
+        void updateBreakpoint(mediaQuery, breakpoint as Breakpoint<C>);
       mediaQuery.addListener(handleChange);
-      // map the unsubscribers array to a list of unsubscriber methods
+      /** Map the unsubscribers array to a list of unsubscriber methods */
       return () => mediaQuery.removeListener(handleChange);
     });
-    // return a function that when called, will call all unsubscribers
+    /** Return a function that when called, will call all unsubscribers */
     return () => unsubscribers.forEach((unsubscriber) => unsubscriber());
   }, [mediaQueries, updateBreakpoint]);
 
+  /** Print a nice debug value for React Devtools */
   useDebugValue(currentBreakpoint, (c) =>
     c
       ? `${c.breakpoint} (${c.minWidth} ≤ x${
