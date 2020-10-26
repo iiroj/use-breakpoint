@@ -1,4 +1,10 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+  useDebugValue,
+} from "react";
 
 export type Config = {
   readonly [key: string]: number;
@@ -123,6 +129,14 @@ export default function useBreakpoint<C extends Config>(
     // return a function that when called, will call all unsubscribers
     return () => unsubscribers.forEach((unsubscriber) => unsubscriber());
   }, [mediaQueries, updateBreakpoint]);
+
+  useDebugValue(currentBreakpoint, (c) =>
+    c
+      ? `${c.breakpoint} (${c.minWidth} ≤ x${
+          c.maxWidth ? ` < ${c.maxWidth}` : ""
+        })`
+      : ""
+  );
 
   return currentBreakpoint;
 }
