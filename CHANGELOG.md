@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/iiroj/use-breakpoint/compare/v1.1.2...v1.1.3) (2020-10-26)
+
+
+### Bug Fixes
+
+* **tsc:** work around tsc errors after update ([de6cfae](https://github.com/iiroj/use-breakpoint/commit/de6cfae89e68d12d127d8e5e1bc50ca5cbe0f8c3))
+* no need to set useState setter as dependency ([80117f0](https://github.com/iiroj/use-breakpoint/commit/80117f071ed965f4238b3ad3f2c26fb7e8c3bb8d))
+
 ### [1.1.2](https://github.com/iiroj/use-breakpoint/compare/v1.1.1...v1.1.2) (2020-05-04)
 
 
