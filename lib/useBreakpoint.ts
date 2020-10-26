@@ -46,8 +46,11 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
 
   /** If there's a match, update the current breakpoint */
   const updateBreakpoint = useCallback(
-    ({ matches }: MediaQueryList, breakpoint: Breakpoint<C>) =>
-      void matches && setCurrentBreakpoint(breakpoint),
+    ({ matches }: MediaQueryList, breakpoint: Breakpoint<C>) => {
+      if (matches) {
+        setCurrentBreakpoint(breakpoint)
+      }
+    },
     []
   )
 
