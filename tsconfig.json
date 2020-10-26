@@ -5,15 +5,15 @@
     "jsx": "react",
     "lib": [
       "dom",
-      "es6"
+      "es2020"
     ],
-    "module": "es6",
+    "module": "es2020",
     "moduleResolution": "node",
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
-    "target": "es5"
+    "target": "es2020"
   },
   "include": [
     ".storybook/*.js",
