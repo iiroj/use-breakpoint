@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import useBreakpoint from './index'
 
 const config = { mobile: 0, tablet: 768, desktop: 1280 }
 
-const CurrentBreakpoint = () => {
+export const UseBreakpoint = (): JSX.Element => {
   const { breakpoint, minWidth, maxWidth } = useBreakpoint(config, 'mobile')
 
   return (
@@ -29,6 +28,6 @@ const CurrentBreakpoint = () => {
   )
 }
 
-storiesOf('use-breakpoint', module).add('useBreakpoint', () => (
-  <CurrentBreakpoint />
-))
+UseBreakpoint.storyName = 'useBreakpoint'
+
+export default { title: 'use-breakpoint', component: UseBreakpoint }
