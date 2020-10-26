@@ -15,21 +15,15 @@ Initialize `useBreakpoint` with a configuration object, and optionally a default
 ```javascript
 import useBreakpoint from 'use-breakpoint';
 
-...
+/**
+ * It is important to bind the object of breakpoints to a variable for memoization to work correctly.
+ * If they are created dynamically, try using the `useMemo` hook.
+ */
+const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }
 
 const CurrentBreakpoint = () => {
-  const {
-    breakpoint,
-    maxWidth,
-    minWidth
-  } = useBreakpoint(
-    { mobile: 0, tablet: 768, desktop: 1280 },
-    'desktop'
-  );
-
-  return (
-    <p>The current breakpoint is {breakpoint}!</p>
-  );
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint(BREAKPOINTS, 'desktop');
+  return <p>The current breakpoint is {breakpoint}!</p>;
 };
 ```
 
