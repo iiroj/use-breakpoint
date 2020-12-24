@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/iiroj/use-breakpoint/compare/v1.1.4...v1.1.5) (2020-12-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([2d50781](https://github.com/iiroj/use-breakpoint/commit/2d50781fd225f394326858d150f2915d0b6cadce))
+
 ### [1.1.4](https://github.com/iiroj/use-breakpoint/compare/v1.1.2...v1.1.4) (2020-10-26)
 
 
