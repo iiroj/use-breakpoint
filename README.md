@@ -29,7 +29,7 @@ const CurrentBreakpoint = () => {
 
 ## Functionality
 
-This component uses the [window.matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) functionality to calculate the current breakpoint. For a list of breakpoints, we generate some css media queries in the form of `(min-width: XXXpx) and (max-width: YYYpx)` and then add listeners for the changes. `useBreakpoint` will then update its return value when the breakpoint changes from one rule to another.
+This hook uses the [window.matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) functionality to calculate the current breakpoint. For a list of breakpoints, we generate some css media queries in the form of `(min-width: XXXpx) and (max-width: YYYpx)` and then add listeners for the changes. `useBreakpoint` will then update its return value when the breakpoint changes from one rule to another.
 
 ## Developing
 
