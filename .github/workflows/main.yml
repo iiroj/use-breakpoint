@@ -30,10 +30,11 @@ jobs:
       - name: Build 
         run: |
           npm run build
+          cd dist
           npm pack
           mv *.tgz package.tgz
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: artifact
-          path: package.tgz
+          path: dist/package.tgz
