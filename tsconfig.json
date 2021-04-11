@@ -18,11 +18,5 @@
     "./**/*.js",
     "./**/*.ts",
     "./**/*.tsx"
-  ],
-  "exclude": [
-    "./lib/*.d.ts",
-    "./index.js",
-    "./index.esm.js",
-    "./index.umd.js",
   ]
 }

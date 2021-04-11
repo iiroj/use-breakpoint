@@ -1,6 +1,2 @@
+/dist
 /node_modules
-/**/*.d.ts
-
-/index.esm.js
-/index.umd.js
-/index.js
