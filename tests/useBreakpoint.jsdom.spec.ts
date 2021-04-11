@@ -83,6 +83,26 @@ describe('useBreakpoint', () => {
     )
   })
 
+  it('should return correct breakpoint client-side with default value and hydrateInitial=false', () => {
+    matchMedia.useMediaQuery('(min-width: 1280px)')
+
+    const { result } = renderHook(() => useBreakpoint(CONFIG, 'mobile', false))
+
+    const EXPECTED = {
+      breakpoint: 'desktop',
+      minWidth: 1280,
+      maxWidth: null,
+    }
+
+    expect(result.current).toEqual(EXPECTED)
+
+    expect(mockUseDebugValue).toHaveBeenCalledTimes(2)
+    expect(mockUseDebugValue.mock.calls[1][0]).toEqual(EXPECTED)
+    expect(mockUseDebugValue.mock.calls[1][1](EXPECTED)).toEqual(
+      'desktop (1280 ≤ x)'
+    )
+  })
+
   it('should react to changes in window.matchMedia client-side', () => {
     matchMedia.useMediaQuery('(min-width: 0px) and (max-width: 767px)')
 

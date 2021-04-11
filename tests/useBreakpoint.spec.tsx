@@ -24,4 +24,14 @@ describe('useBreakpoint', () => {
     const result = renderToStaticMarkup(<Test />)
     expect(result).toEqual('mobile')
   })
+
+  it('should return default value server-side when set and hydrateInitial=false', () => {
+    const Test = () => {
+      const { breakpoint } = useBreakpoint(CONFIG, 'mobile', false)
+      return <>{breakpoint}</>
+    }
+
+    const result = renderToStaticMarkup(<Test />)
+    expect(result).toEqual('mobile')
+  })
 })

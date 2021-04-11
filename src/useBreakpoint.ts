@@ -20,6 +20,7 @@ type Return<C extends Config, D> = D extends undefined
  * Will listen to changes using the window.matchMedia API.
  * @param {*} config the list of configured breakpoint names and their pixel values
  * @param {*} [defaultBreakpoint] the optional default breakpoint
+ * @param {*} [hydrateInitial] whether to return the default breakpoint on first render. Set to `false` if the real breakpoint should be returned instead. Only applies to the browser, not server-side.
  *
  * @example
  * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
@@ -32,10 +33,17 @@ type Return<C extends Config, D> = D extends undefined
  * ...
  * const result = useBreakpoint(breakpoints, 'mobile')
  * // breakpoint: { breakpoint: string; minWidth: number; maxWidth: number | null }
+ *
+ * @example <caption>With default value, but not hydrated. This means the breakpoint might be different on the initial render.</caption>
+ * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
+ * ...
+ * const result = useBreakpoint(breakpoints, 'mobile', false)
+ * // breakpoint: { breakpoint: string; minWidth: number; maxWidth: number | null }
  */
 const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   config: C,
-  defaultBreakpoint?: D
+  defaultBreakpoint?: D,
+  hydrateInitial = true
 ): Return<C, D> => {
   /** Memoize list of calculated media queries from config */
   const mediaQueries = useMemo(() => createMediaQueries(config), [config])
@@ -48,17 +56,19 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
     for (const { query, ...breakpoint } of mediaQueries) {
       /**
        * If we're in the browser and there's no default value,
-       * try to match actual breakpoint
+       * try to match actual breakpoint. If the default value
+       * should not be hydrated, use the actual breakpoint.
        */
-      if (typeof window !== 'undefined' && !defaultBreakpoint) {
+      if (
+        typeof window !== 'undefined' &&
+        !(defaultBreakpoint && hydrateInitial)
+      ) {
         const mediaQuery = window.matchMedia(query)
         if (mediaQuery.matches) {
           return breakpoint as Breakpoint<C>
         }
-      }
-
-      /** Otherwise, try to match default value */
-      if (breakpoint.breakpoint === defaultBreakpoint) {
+      } else if (breakpoint.breakpoint === defaultBreakpoint) {
+        /** Otherwise, try to match default value */
         return breakpoint as Breakpoint<C>
       }
     }
