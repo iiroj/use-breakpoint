@@ -9,7 +9,7 @@ const EMPTY_BREAKPOINT = {
   maxWidth: undefined,
 } as const
 
-type Return<C extends Config, D> = D extends null
+type Return<C extends Config, D> = D extends undefined
   ? Breakpoint<C> | typeof EMPTY_BREAKPOINT
   : D extends keyof C
   ? Breakpoint<C>
@@ -25,7 +25,7 @@ type Return<C extends Config, D> = D extends null
  * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
  * ...
  * const result = useBreakpoint(breakpoints)
- * // null | { breakpoint: string; minWidth: number; maxWidth?: number }
+ * // { breakpoint: string; minWidth: number; maxWidth?: number } | { breakpoint: undefined; minWidth: undefined; maxWidth: undefined }
  *
  * @example <caption>With default value</caption>
  * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
@@ -33,7 +33,7 @@ type Return<C extends Config, D> = D extends null
  * const result = useBreakpoint(breakpoints, 'mobile')
  * // breakpoint: { breakpoint: string; minWidth: number; maxWidth?: number }
  */
-const useBreakpoint = <C extends Config, D extends keyof C | null>(
+const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   config: C,
   defaultBreakpoint?: D
 ): Return<C, D> => {
