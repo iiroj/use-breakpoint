@@ -27,6 +27,21 @@ const CurrentBreakpoint = () => {
 };
 ```
 
+### Return values
+
+Given a configuration `BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }` and a window size of `1280x960`, the hook will return as the breakpoint:
+
+1. `const { breakpoint } = useBreakpoint(BREAKPOINTS)`
+    - `undefined` when rendered server-side
+    - `'desktop'` when rendered client-side
+1. `const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile')`
+    - `'mobile'` when rendered server-side
+    - `'mobile'` on the first client-side render
+    - `'desktop'` on subsequent client-side renders
+1. `const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile', false)`
+    - `'mobile'` when rendered server-side
+    - `'desktop'` when rendered client-side
+
 ### Hydration
 
 If supplied a default breakpoint, the hook will always return that value when rendered server-side. To not cause inconsistencies during the first client-side render, the default value is also used client-side for the first render, instead of the (possibly different) real breakpoint.
