@@ -68,7 +68,10 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
 
   /** If there's a match, update the current breakpoint */
   const updateBreakpoint = useCallback(
-    ({ matches }: MediaQueryList, breakpoint: Breakpoint<C>) => {
+    (
+      { matches }: MediaQueryList | MediaQueryListEvent,
+      breakpoint: Breakpoint<C>
+    ) => {
       if (matches) {
         setCurrentBreakpoint(breakpoint)
       }
@@ -79,17 +82,16 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   /** On changes to mediaQueries, subscribe to changes using window.matchMedia */
   useEffect(() => {
     const unsubscribers = mediaQueries.map(({ query, ...breakpoint }) => {
-      const mediaQuery = window.matchMedia(query)
+      const list = window.matchMedia(query)
+      updateBreakpoint(list, breakpoint as Breakpoint<C>)
 
-      updateBreakpoint(mediaQuery, breakpoint as Breakpoint<C>)
-
-      const handleChange = () => {
-        updateBreakpoint(mediaQuery, breakpoint as Breakpoint<C>)
+      const handleChange = (event: MediaQueryListEvent) => {
+        updateBreakpoint(event, breakpoint as Breakpoint<C>)
       }
 
-      mediaQuery.addListener(handleChange)
+      list.addListener(handleChange)
       /** Map the unsubscribers array to a list of unsubscriber methods */
-      return () => mediaQuery.removeListener(handleChange)
+      return () => list.removeListener(handleChange)
     })
 
     /** Return a function that when called, will call all unsubscribers */
