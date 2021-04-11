@@ -51,7 +51,7 @@ describe('useBreakpoint', () => {
     const EXPECTED = {
       breakpoint: 'tablet',
       minWidth: 768,
-      maxWidth: 1280,
+      maxWidth: 1279,
     }
 
     expect(result.current).toEqual(EXPECTED)
@@ -71,7 +71,7 @@ describe('useBreakpoint', () => {
     const EXPECTED = {
       breakpoint: 'mobile',
       minWidth: 0,
-      maxWidth: 768,
+      maxWidth: 767,
     }
 
     expect(result.current).toEqual(EXPECTED)
@@ -91,7 +91,7 @@ describe('useBreakpoint', () => {
     expect(result.current).toEqual({
       breakpoint: 'mobile',
       minWidth: 0,
-      maxWidth: 768,
+      maxWidth: 767,
     })
 
     act(() => {

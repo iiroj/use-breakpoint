@@ -102,7 +102,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   useDebugValue(currentBreakpoint, (c) =>
     typeof c.breakpoint === 'string'
       ? `${c.breakpoint} (${c.minWidth} ≤ x${
-          c.maxWidth ? ` < ${c.maxWidth}` : ''
+          c.maxWidth ? ` < ${c.maxWidth + 1}` : ''
         })`
       : ''
   )

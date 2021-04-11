@@ -28,7 +28,7 @@ const createMediaQueries = (breakpoints: Config): MediaQuery<Config>[] => {
 
     const mediaQuery: MediaQuery<Config> = {
       breakpoint,
-      maxWidth,
+      maxWidth: maxWidth ? maxWidth - 1 : undefined,
       minWidth,
       query,
     }

@@ -33,7 +33,7 @@ describe('createMediaQueries', () => {
       },
       {
         breakpoint: 'mobile',
-        maxWidth: 768,
+        maxWidth: 767,
         minWidth: 0,
         query: '(min-width: 0px) and (max-width: 767px)',
       },
@@ -50,7 +50,7 @@ describe('createMediaQueries', () => {
       },
       {
         breakpoint: 'mobile',
-        maxWidth: 768,
+        maxWidth: 767,
         minWidth: -1,
         query: '(max-width: 767px)',
       },
