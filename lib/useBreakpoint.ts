@@ -3,8 +3,14 @@ import { useEffect, useMemo, useState, useCallback, useDebugValue } from 'react'
 import createMediaQueries from './createMediaQueries'
 import type { Config, Breakpoint } from './types'
 
+const EMPTY_BREAKPOINT = {
+  breakpoint: undefined,
+  minWidth: undefined,
+  maxWidth: undefined,
+} as const
+
 type Return<C extends Config, D> = D extends null
-  ? Breakpoint<C> | null
+  ? Breakpoint<C> | typeof EMPTY_BREAKPOINT
   : D extends keyof C
   ? Breakpoint<C>
   : never
@@ -35,10 +41,9 @@ const useBreakpoint = <C extends Config, D extends keyof C | null>(
   const mediaQueries = useMemo(() => createMediaQueries(config), [config])
 
   /** Get initial breakpoint value */
-  const [
-    currentBreakpoint,
-    setCurrentBreakpoint,
-  ] = useState<Breakpoint<C> | null>(() => {
+  const [currentBreakpoint, setCurrentBreakpoint] = useState<
+    Breakpoint<C> | typeof EMPTY_BREAKPOINT
+  >(() => {
     /** Loop through all media queries */
     for (const { query, ...breakpoint } of mediaQueries) {
       /**
@@ -58,7 +63,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | null>(
       }
     }
 
-    return null
+    return EMPTY_BREAKPOINT
   })
 
   /** If there's a match, update the current breakpoint */
@@ -93,7 +98,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | null>(
 
   /** Print a nice debug value for React Devtools */
   useDebugValue(currentBreakpoint, (c) =>
-    c
+    typeof c.breakpoint === 'number'
       ? `${c.breakpoint} (${c.minWidth} ≤ x${
           c.maxWidth ? ` < ${c.maxWidth}` : ''
         })`

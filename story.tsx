@@ -5,8 +5,7 @@ import useBreakpoint from './index'
 const config = { mobile: 0, tablet: 768, desktop: 1280 }
 
 export const WithoutDefaultValue = (): JSX.Element => {
-  const usedBreakpoint = useBreakpoint(config)
-  const { breakpoint, minWidth, maxWidth } = usedBreakpoint || {}
+  const { breakpoint, minWidth, maxWidth } = useBreakpoint(config)
 
   React.useEffect(() => {
     console.log('breakpoint', breakpoint)
