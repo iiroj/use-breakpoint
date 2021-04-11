@@ -5,7 +5,7 @@ describe('createMediaQueries', () => {
     expect(createMediaQueries({ mobile: 0 })).toEqual([
       {
         breakpoint: 'mobile',
-        maxWidth: undefined,
+        maxWidth: null,
         minWidth: 0,
         query: '(min-width: 0px)',
       },
@@ -16,7 +16,7 @@ describe('createMediaQueries', () => {
     expect(createMediaQueries({ tablet: 768 })).toEqual([
       {
         breakpoint: 'tablet',
-        maxWidth: undefined,
+        maxWidth: null,
         minWidth: 768,
         query: '(min-width: 768px)',
       },
@@ -27,7 +27,7 @@ describe('createMediaQueries', () => {
     expect(createMediaQueries({ mobile: 0, tablet: 768 })).toEqual([
       {
         breakpoint: 'tablet',
-        maxWidth: undefined,
+        maxWidth: null,
         minWidth: 768,
         query: '(min-width: 768px)',
       },
@@ -44,7 +44,7 @@ describe('createMediaQueries', () => {
     expect(createMediaQueries({ mobile: -1, tablet: 768 })).toEqual([
       {
         breakpoint: 'tablet',
-        maxWidth: undefined,
+        maxWidth: null,
         minWidth: 768,
         query: '(min-width: 768px)',
       },

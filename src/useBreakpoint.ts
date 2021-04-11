@@ -25,13 +25,13 @@ type Return<C extends Config, D> = D extends undefined
  * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
  * ...
  * const result = useBreakpoint(breakpoints)
- * // { breakpoint: string; minWidth: number; maxWidth?: number } | { breakpoint: undefined; minWidth: undefined; maxWidth: undefined }
+ * // { breakpoint: string; minWidth: number; maxWidth: number | null } | { breakpoint: undefined; minWidth: undefined; maxWidth: undefined }
  *
  * @example <caption>With default value</caption>
  * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
  * ...
  * const result = useBreakpoint(breakpoints, 'mobile')
- * // breakpoint: { breakpoint: string; minWidth: number; maxWidth?: number }
+ * // breakpoint: { breakpoint: string; minWidth: number; maxWidth: number | null }
  */
 const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   config: C,

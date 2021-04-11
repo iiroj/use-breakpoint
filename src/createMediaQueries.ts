@@ -13,13 +13,13 @@ const createMediaQueries = (breakpoints: Config): MediaQuery<Config>[] => {
     let query = ''
     const minWidth = breakpoints[breakpoint]
     const nextBreakpoint = sortedBreakpoints[index - 1] as string | undefined
-    const maxWidth = nextBreakpoint ? breakpoints[nextBreakpoint] : undefined
+    const maxWidth = nextBreakpoint ? breakpoints[nextBreakpoint] : null
 
     if (minWidth >= 0) {
       query = `(min-width: ${minWidth}px)`
     }
 
-    if (typeof maxWidth !== 'undefined') {
+    if (maxWidth !== null) {
       if (query) {
         query += ' and '
       }
@@ -28,7 +28,7 @@ const createMediaQueries = (breakpoints: Config): MediaQuery<Config>[] => {
 
     const mediaQuery: MediaQuery<Config> = {
       breakpoint,
-      maxWidth: maxWidth ? maxWidth - 1 : undefined,
+      maxWidth: maxWidth ? maxWidth - 1 : null,
       minWidth,
       query,
     }

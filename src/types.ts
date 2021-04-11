@@ -4,13 +4,13 @@ export type Config = {
 
 export type Breakpoint<C extends Config> = {
   breakpoint: keyof C
-  maxWidth?: number
+  maxWidth?: number | null
   minWidth: C[keyof C]
 }
 
 export type MediaQuery<C extends Config> = {
   breakpoint: keyof C
-  maxWidth?: number
+  maxWidth: number | null
   minWidth: C[keyof C]
   query: string
 }

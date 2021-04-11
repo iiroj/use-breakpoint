@@ -101,7 +101,7 @@ describe('useBreakpoint', () => {
     const EXPECTED = {
       breakpoint: 'desktop',
       minWidth: 1280,
-      maxWidth: undefined,
+      maxWidth: null,
     }
 
     expect(result.current).toEqual(EXPECTED)
