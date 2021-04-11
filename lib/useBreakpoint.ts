@@ -39,11 +39,23 @@ const useBreakpoint = <C extends Config, D extends keyof C | null>(
     currentBreakpoint,
     setCurrentBreakpoint,
   ] = useState<Breakpoint<C> | null>(() => {
-    if (defaultBreakpoint) {
-      const { query, ...breakpoint } = mediaQueries.find(
-        (query) => query.breakpoint === defaultBreakpoint
-      )!
-      return (breakpoint as Breakpoint<C>) || null
+    /** Loop through all media queries */
+    for (const { query, ...breakpoint } of mediaQueries) {
+      /**
+       * If we're in the browser and there's no default value,
+       * try to match actual breakpoint
+       */
+      if (typeof window !== 'undefined' && !defaultBreakpoint) {
+        const mediaQuery = window.matchMedia(query)
+        if (mediaQuery.matches) {
+          return breakpoint as Breakpoint<C>
+        }
+      }
+
+      /** Otherwise, try to match default value */
+      if (breakpoint.breakpoint === defaultBreakpoint) {
+        return breakpoint as Breakpoint<C>
+      }
     }
 
     return null

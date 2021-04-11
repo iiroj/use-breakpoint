@@ -4,8 +4,13 @@ import useBreakpoint from './index'
 
 const config = { mobile: 0, tablet: 768, desktop: 1280 }
 
-export const UseBreakpoint = (): JSX.Element => {
-  const { breakpoint, minWidth, maxWidth } = useBreakpoint(config, 'mobile')
+export const WithoutDefaultValue = (): JSX.Element => {
+  const usedBreakpoint = useBreakpoint(config)
+  const { breakpoint, minWidth, maxWidth } = usedBreakpoint || {}
+
+  React.useEffect(() => {
+    console.log('breakpoint', breakpoint)
+  }, [breakpoint])
 
   return (
     <p>
@@ -28,6 +33,32 @@ export const UseBreakpoint = (): JSX.Element => {
   )
 }
 
-UseBreakpoint.storyName = 'useBreakpoint'
+export const WithDefaultValue = (): JSX.Element => {
+  const { breakpoint, minWidth, maxWidth } = useBreakpoint(config, 'mobile')
 
-export default { title: 'use-breakpoint', component: UseBreakpoint }
+  React.useEffect(() => {
+    console.log('breakpoint', breakpoint)
+  }, [breakpoint])
+
+  return (
+    <p>
+      The current breakpoint is <strong>{breakpoint}</strong> with{' '}
+      <em>min-width</em> of{' '}
+      <strong>
+        {minWidth}
+        px
+      </strong>
+      {maxWidth ? (
+        <>
+          {' '}
+          and a <em>max-width</em> of <strong>{maxWidth}px</strong>
+        </>
+      ) : (
+        ''
+      )}
+      !
+    </p>
+  )
+}
+
+export default { title: 'useBreakpoint' }
