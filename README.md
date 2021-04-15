@@ -27,6 +27,45 @@ const CurrentBreakpoint = () => {
 };
 ```
 
+### Return values
+
+Given a configuration `BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }` and a window size of `1280x960`, the hook will return as the breakpoint:
+
+1. `const { breakpoint } = useBreakpoint(BREAKPOINTS)`
+    - `undefined` when rendered server-side
+    - `'desktop'` when rendered client-side
+1. `const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile')`
+    - `'mobile'` when rendered server-side
+    - `'mobile'` on the first client-side render
+    - `'desktop'` on subsequent client-side renders
+1. `const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile', false)`
+    - `'mobile'` when rendered server-side
+    - `'desktop'` when rendered client-side
+
+### Hydration
+
+If supplied a default breakpoint, the hook will always return that value when rendered server-side. To not cause inconsistencies during the first client-side render, the default value is also used client-side for the first render, instead of the (possibly different) real breakpoint.
+
+For example, given a breakpoint config:
+
+```ts
+const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile')
+```
+
+When rendered server-side, `breakpoint === 'mobile'` always, because there is no window.
+
+On client-side with a `desktop`-sized window, on the first render `breakpoint === 'mobile'`, and then on following renders `breakpoint === 'desktop'`.
+
+This is to ensure `ReactDOM.hydrate` behaves correctly.
+
+To disable this behavior, pass `false` as the third argument:
+
+```ts
+const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile', false)
+```
+
+Now `breakpoint === 'mobile'` server-side, but `breakpoint === 'desktop'` client-side during the first render. You should probably use `ReactDOM.render` instead of `ReactDOM.hydrate` in this case.
+
 ## Functionality
 
 This hook uses the [window.matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) functionality to calculate the current breakpoint. For a list of breakpoints, we generate some css media queries in the form of `(min-width: XXXpx) and (max-width: YYYpx)` and then add listeners for the changes. `useBreakpoint` will then update its return value when the breakpoint changes from one rule to another.

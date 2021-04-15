@@ -18,20 +18,23 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - name: Install dependencies
         run: npm ci
       - name: Lint
         run: npm run lint
       - name: Typecheck
         run: npm run typecheck
+      - name: Test
+        run: npm test
       - name: Build 
         run: |
           npm run build
+          cd dist
           npm pack
           mv *.tgz package.tgz
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: artifact
-          path: package.tgz
+          path: dist/package.tgz

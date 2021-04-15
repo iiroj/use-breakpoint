@@ -8,38 +8,35 @@ const external = [...Object.keys(pkg.peerDependencies)]
 
 const getPlugins = (target, declaration) => {
   const tsOptions = {
-    sourceMap: false,
-    tsconfig: 'tsconfig.build.json',
+    declaration: !!declaration,
+    declarationDir: declaration ? 'dist' : undefined,
+    sourceMap: !!declaration,
+    tsconfig: 'src/tsconfig.json',
     typescript: require('typescript'),
     target,
-  }
-
-  if (declaration) {
-    tsOptions.declaration = true
-    tsOptions.outDir = '.'
   }
 
   return [resolve(), commonjs(), typescript(tsOptions)]
 }
 
-export default [
+const config = [
   {
-    input: 'index.ts',
-    output: { exports: 'named', dir: '.', format: 'cjs' },
+    input: 'src/index.ts',
+    output: { exports: 'named', dir: 'dist', format: 'cjs', sourcemap: true },
     external,
     plugins: getPlugins('es5', true),
   },
   {
-    input: 'index.ts',
-    output: { exports: 'named', file: pkg.module, format: 'esm' },
+    input: 'src/index.ts',
+    output: { exports: 'named', file: `dist/${pkg.module}`, format: 'esm' },
     external,
     plugins: getPlugins('es2015'),
   },
   {
-    input: 'index.ts',
+    input: 'src/index.ts',
     output: {
       exports: 'named',
-      file: pkg.browser,
+      file: `dist/${pkg.browser}`,
       format: 'umd',
       globals: {
         react: 'React',
@@ -50,3 +47,5 @@ export default [
     plugins: getPlugins('es5'),
   },
 ]
+
+export default config
