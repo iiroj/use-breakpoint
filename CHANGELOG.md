@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/iiroj/use-breakpoint/compare/v1.1.7...v2.0.0) (2021-04-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Previously this hook returned `undefined`
+when the default value was not set and the real breakpoint
+couldn't be found (like during SSR).
+
+Now it returns an object
+`{ breakpoint: undefined, minWidth: undefined, maxWidth: undefined }`
+to make isomorphic usage easier.
+
+This might require changes to existing code.
+
+### Features
+
+* allow returning the real breakpoint instead of default on the first client render ([972c5bc](https://github.com/iiroj/use-breakpoint/commit/972c5bc903f9eda7679e45ba883c99e5b1767a89))
+* directly return correct initial breakpoint when default not set ([2f25717](https://github.com/iiroj/use-breakpoint/commit/2f25717a88b04d9c54ab0521fff0b19173c03c6b))
+
+
+### Bug Fixes
+
+* always return an object for easier usage ([76b4e4a](https://github.com/iiroj/use-breakpoint/commit/76b4e4a657ee0319a91c1a5321eae99d8c194003))
+* bump package-lock.json version ([f80b97c](https://github.com/iiroj/use-breakpoint/commit/f80b97ce3afafa06c301b95943f5e52e95ced7b7))
+* correct typeof check in useDebugValue ([0c4114c](https://github.com/iiroj/use-breakpoint/commit/0c4114c4c3f0ca335b593890620315588182e75d))
+* return null instead of undefined ([2136384](https://github.com/iiroj/use-breakpoint/commit/2136384dde683b856cbdb4dcba93eaf1127a0a98))
+* return null instead of undefined maxWidth where appropriate ([f5d5543](https://github.com/iiroj/use-breakpoint/commit/f5d5543eb66465d0af5168e7ae0250a1b6d2fff2))
+* returned maxWidth does not overlap next breakpoint's minWidth ([75c0d85](https://github.com/iiroj/use-breakpoint/commit/75c0d852cb1e96f13f8afc208269a9b26ac1d2ba))
+* use matchMedia listener callback argument ([a01c890](https://github.com/iiroj/use-breakpoint/commit/a01c890257d03453bb325254a1fd96e4c538f1ff))
+
 ### [1.1.7](https://github.com/iiroj/use-breakpoint/compare/v1.1.6...v1.1.7) (2021-04-10)
 
 ### [1.1.6](https://github.com/iiroj/use-breakpoint/compare/v1.1.5...v1.1.6) (2021-02-19)
