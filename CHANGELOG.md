@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/iiroj/use-breakpoint/compare/v2.0.0...v2.0.1) (2021-05-27)
+
+
+### Bug Fixes
+
+* useLayoutEffect instead of useEffect ([#9](https://github.com/iiroj/use-breakpoint/issues/9)) ([e35d66e](https://github.com/iiroj/use-breakpoint/commit/e35d66eafaa041ef04522996e9e4fe354b1a59c1))
+
 ## [2.0.0](https://github.com/iiroj/use-breakpoint/compare/v1.1.7...v2.0.0) (2021-04-15)
 
 
