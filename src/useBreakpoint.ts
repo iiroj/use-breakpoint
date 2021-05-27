@@ -1,4 +1,10 @@
-import { useLayoutEffect, useMemo, useState, useCallback, useDebugValue } from 'react'
+import {
+  useLayoutEffect,
+  useMemo,
+  useState,
+  useCallback,
+  useDebugValue,
+} from 'react'
 
 import createMediaQueries from './createMediaQueries'
 import type { Config, Breakpoint } from './types'
