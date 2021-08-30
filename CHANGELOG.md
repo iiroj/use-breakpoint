@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/iiroj/use-breakpoint/compare/v2.0.1...v2.0.2) (2021-08-30)
+
+
+### Bug Fixes
+
+* use useEffect without DOM to suppress unnecessary warning ([05311fd](https://github.com/iiroj/use-breakpoint/commit/05311fd816b6667ff4dcf41ae03facb7045e09ec))
+
 ### [2.0.1](https://github.com/iiroj/use-breakpoint/compare/v2.0.0...v2.0.1) (2021-05-27)
 
 
