@@ -1,13 +1,8 @@
-import {
-  useLayoutEffect,
-  useMemo,
-  useState,
-  useCallback,
-  useDebugValue,
-} from 'react'
+import { useMemo, useState, useCallback, useDebugValue } from 'react'
 
 import createMediaQueries from './createMediaQueries'
 import type { Config, Breakpoint } from './types'
+import useIsomorphicEffect from './useIsomorphicEffect'
 
 const EMPTY_BREAKPOINT = {
   breakpoint: undefined,
@@ -96,7 +91,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   )
 
   /** On changes to mediaQueries, subscribe to changes using window.matchMedia */
-  useLayoutEffect(() => {
+  useIsomorphicEffect(() => {
     const unsubscribers = mediaQueries.map(({ query, ...breakpoint }) => {
       const list = window.matchMedia(query)
       updateBreakpoint(list, breakpoint as Breakpoint<C>)
