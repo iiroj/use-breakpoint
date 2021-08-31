@@ -25,6 +25,7 @@
     "watch": "rollup -cw",
     "build": "rollup -c",
     "postbuild": "npm-publish-files dist --force",
+    "prerelease": "npm run lint && npm run typecheck && npm test && npm run build",
     "version": "standard-version --no-verify"
   },
   "lint-staged": {
@@ -37,7 +38,7 @@
   },
   "standard-version": {
     "scripts": {
-      "prerelease": "npm run lint && npm run typecheck && npm run build"
+      "prerelease": "npm run prerelease"
     }
   },
   "peerDependencies": {
