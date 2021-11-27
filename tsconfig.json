@@ -14,9 +14,9 @@
     "target": "es2020"
   },
   "include": [
-    "./.storybook/*.js",
-    "./**/*.js",
-    "./**/*.ts",
-    "./**/*.tsx"
+    ".storybook/*.js",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

@@ -1,23 +1,19 @@
 module.exports = {
   addons: ['@storybook/addon-storysource'],
+  core: {
+    builder: 'webpack5',
+  },
   stories: ['../story.tsx'],
   webpack: (config) => {
-    config.module.rules.push(
+    config.module.rules.unshift(
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-        options: {
-          transpileOnly: true,
-        },
+        test: /\.(j|t)sx?$/,
+        loader: 'swc-loader',
       },
       {
         test: /story\.tsx?$/,
-        loaders: [
-          {
-            loader: require.resolve('@storybook/source-loader'),
-            options: { parser: 'typescript' },
-          },
-        ],
+        loader: require.resolve('@storybook/source-loader'),
+        options: { parser: 'typescript' },
         enforce: 'pre',
       }
     )
