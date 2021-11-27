@@ -1,4 +1,5 @@
-import createMediaQueries from '../src/createMediaQueries'
+// @ts-expect-error: An import path cannot end with a '.ts' extension
+import createMediaQueries from '../createMediaQueries.ts'
 
 describe('createMediaQueries', () => {
   it('should return min-width query', () => {

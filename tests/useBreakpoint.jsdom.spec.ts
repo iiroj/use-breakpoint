@@ -1,6 +1,7 @@
 /** @jest-environment jsdom */
 
-import useBreakpoint from '../src/index'
+// @ts-expect-error: An import path cannot end with a '.ts' extension
+import useBreakpoint from '../index.ts'
 import { act, renderHook } from '@testing-library/react-hooks'
 import MatchMediaMock from 'jest-matchmedia-mock'
 import { useDebugValue } from 'react'

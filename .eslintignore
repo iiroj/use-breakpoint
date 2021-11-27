@@ -1,3 +1,7 @@
 coverage
 dist
 node_modules
+
+/*.d.ts
+/index*.js
+

@@ -1,4 +1,5 @@
-import useBreakpoint from '../src/index'
+// @ts-expect-error: An import path cannot end with a '.ts' extension
+import useBreakpoint from '../index.ts'
 import { renderToStaticMarkup } from 'react-dom/server'
 import * as React from 'react'
 

@@ -25,14 +25,13 @@ jobs:
       - name: Build 
         run: |
           npm run build
-          cd dist
           npm pack
           mv *.tgz package.tgz
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: artifact
-          path: dist/package.tgz
+          path: package.tgz
 
   publish-npm:
     name: Publish to npm

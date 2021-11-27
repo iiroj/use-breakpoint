@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "declaration": true,
+    "declarationDir": ".",
     "jsx": "react",
-    "lib": [
-      "dom",
-      "es2020"
-    ],
+    "lib": ["dom", "es2020"],
     "module": "es2020",
     "moduleResolution": "node",
     "noEmit": true,
@@ -13,10 +12,6 @@
     "strict": true,
     "target": "es2020"
   },
-  "include": [
-    ".storybook/*.js",
-    "**/*.js",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": [".storybook/*.js", "**/*.js", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "tests"]
 }
