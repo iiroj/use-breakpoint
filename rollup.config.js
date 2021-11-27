@@ -10,7 +10,6 @@ const getPlugins = (target, declaration) => {
   const tsOptions = {
     declaration: !!declaration,
     declarationDir: declaration ? 'dist' : undefined,
-    sourceMap: !!declaration,
     tsconfig: 'src/tsconfig.json',
     typescript: require('typescript'),
     target,
@@ -22,7 +21,7 @@ const getPlugins = (target, declaration) => {
 const config = [
   {
     input: 'src/index.ts',
-    output: { exports: 'named', dir: 'dist', format: 'cjs', sourcemap: true },
+    output: { exports: 'named', dir: 'dist', format: 'cjs' },
     external,
     plugins: getPlugins('es5', true),
   },
