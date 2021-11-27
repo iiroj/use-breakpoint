@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/iiroj/use-breakpoint/compare/v2.0.3...v3.0.0) (2021-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* `use-breakpoint` is now a pure ESM module,
+and might need transpilation (eg. with babel) when used in older
+CommonJS-based projects.
+
+### build
+
+* use only TSC to build ESM distribution ([2f5e381](https://github.com/iiroj/use-breakpoint/commit/2f5e3814efcbc091dde7fec15da7113624a63bb4))
+
 ### [2.0.3](https://github.com/iiroj/use-breakpoint/compare/v2.0.2...v2.0.3) (2021-11-27)
 
 ### [2.0.2](https://github.com/iiroj/use-breakpoint/compare/v2.0.1...v2.0.2) (2021-08-30)
