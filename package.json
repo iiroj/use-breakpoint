@@ -28,19 +28,6 @@
     "prerelease": "npm run lint && npm run typecheck && npm test && npm run build",
     "version": "standard-version --no-verify"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": "npm run lint:base"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "standard-version": {
-    "scripts": {
-      "prerelease": "npm run prerelease"
-    }
-  },
   "peerDependencies": {
     "react": ">=16.8",
     "react-dom": ">=16.8"
