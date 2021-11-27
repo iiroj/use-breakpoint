@@ -1,0 +1,19 @@
+{
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "*.ts"
+  ],
+  "coveragePathIgnorePatterns": [
+    "node_modules",
+    "!*.d.ts"
+  ],
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.(t|j)sx?$": [
+      "@swc/jest",
+      {
+        "sourceMaps": true
+      }
+    ]
+  }
+}

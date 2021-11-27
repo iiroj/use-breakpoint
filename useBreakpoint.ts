@@ -1,8 +1,14 @@
 import { useMemo, useState, useCallback, useDebugValue } from 'react'
 
 import createMediaQueries from './createMediaQueries'
-import type { Config, Breakpoint } from './types'
+import type { Config } from './createMediaQueries'
 import useIsomorphicEffect from './useIsomorphicEffect'
+
+export type Breakpoint<C extends Config> = {
+  breakpoint: keyof C
+  maxWidth?: number | null
+  minWidth: C[keyof C]
+}
 
 const EMPTY_BREAKPOINT = {
   breakpoint: undefined,
