@@ -1,8 +1,5 @@
 module.exports = {
   addons: ['@storybook/addon-storysource'],
-  core: {
-    builder: 'webpack5',
-  },
   stories: ['../story.tsx'],
   webpack: (config) => {
     config.module.rules.unshift(
@@ -12,7 +9,7 @@ module.exports = {
       },
       {
         test: /story\.tsx?$/,
-        loader: require.resolve('@storybook/source-loader'),
+        loader: '@storybook/source-loader',
         options: { parser: 'typescript' },
         enforce: 'pre',
       }
