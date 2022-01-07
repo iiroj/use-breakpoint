@@ -1,7 +1,7 @@
-import useBreakpoint from './useBreakpoint'
+import useBreakpoint from './useBreakpoint.js'
 
-export type { Config, MediaQuery } from './createMediaQueries'
-export type { Breakpoint } from './useBreakpoint'
+export type { Config, MediaQuery } from './createMediaQueries.js'
+export type { Breakpoint } from './useBreakpoint.js'
 
 export { useBreakpoint }
 

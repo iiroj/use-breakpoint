@@ -1,8 +1,8 @@
 import { useMemo, useState, useCallback, useDebugValue } from 'react'
 
-import createMediaQueries from './createMediaQueries'
-import type { Config } from './createMediaQueries'
-import useIsomorphicEffect from './useIsomorphicEffect'
+import createMediaQueries from './createMediaQueries.js'
+import type { Config } from './createMediaQueries.js'
+import useIsomorphicEffect from './useIsomorphicEffect.js'
 
 export type Breakpoint<C extends Config> = {
   breakpoint: keyof C

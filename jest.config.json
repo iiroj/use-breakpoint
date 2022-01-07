@@ -7,6 +7,9 @@
     "node_modules",
     "!*.d.ts"
   ],
+  "moduleNameMapper": {
+    "^(.+).js$": "$1"
+  },
   "testEnvironment": "node",
   "transform": {
     "^.+\\.(t|j)sx?$": [
