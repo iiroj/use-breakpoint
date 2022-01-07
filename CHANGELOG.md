@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/iiroj/use-breakpoint/compare/v3.0.0...v3.0.1) (2022-01-07)
+
+
+### Bug Fixes
+
+* use explicit extensions in import paths ([185bc75](https://github.com/iiroj/use-breakpoint/commit/185bc75364605dfbbc43dbbb22f75f2e40c9b4cf))
+
 ## [3.0.0](https://github.com/iiroj/use-breakpoint/compare/v2.0.3...v3.0.0) (2021-11-27)
 
 
