@@ -20,13 +20,13 @@ jobs:
         run: npm run lint
       - name: Typecheck
         run: npm run typecheck
-      - name: Test
-        run: npm test
       - name: Build 
         run: |
           npm run build
           npm pack
           mv *.tgz package.tgz
+      - name: Test
+        run: npm test
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
