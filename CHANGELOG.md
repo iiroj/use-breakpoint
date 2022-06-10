@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.3](https://github.com/iiroj/use-breakpoint/compare/v3.0.2...v3.0.3) (2022-06-10)
+
+
+### Bug Fixes
+
+* **deps:** update react@18 dev dependency ([94f6b48](https://github.com/iiroj/use-breakpoint/commit/94f6b481ac4562e513f32588f8c7c889b3ad16d9))
+
 ### [3.0.2](https://github.com/iiroj/use-breakpoint/compare/v3.0.1...v3.0.2) (2022-03-27)
 
 ### [3.0.1](https://github.com/iiroj/use-breakpoint/compare/v3.0.0...v3.0.1) (2022-01-07)
