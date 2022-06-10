@@ -2,7 +2,7 @@
 
 // @ts-expect-error: An import path cannot end with a '.ts' extension
 import useBreakpoint from '../index.ts'
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react'
 import MatchMediaMock from 'jest-matchmedia-mock'
 import { useDebugValue } from 'react'
 
