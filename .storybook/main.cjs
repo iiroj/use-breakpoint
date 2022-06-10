@@ -1,22 +1,22 @@
 module.exports = {
-  addons: ['@storybook/addon-storysource'],
-  stories: ['../story.tsx'],
-  webpack: (config) => {
-    config.module.rules.unshift(
-      {
-        test: /\.(j|t)sx?$/,
-        loader: 'swc-loader',
+  addons: [
+    {
+      name: '@storybook/addon-storysource',
+      options: {
+        rule: { test: [/story\.tsx?$/] },
+        loaderOptions: { parser: 'typescript' },
       },
-      {
-        test: /story\.tsx?$/,
-        loader: '@storybook/source-loader',
-        options: { parser: 'typescript' },
-        enforce: 'pre',
-      }
-    )
-
-    config.resolve.extensions.unshift('.ts', '.tsx')
-
-    return config
+    },
+    {
+      name: 'storybook-addon-swc',
+    },
+  ],
+  core: {
+    builder: 'webpack5',
+    options: {
+      fsCache: true,
+      lazyCompilation: true,
+    },
   },
+  stories: ['../story.tsx'],
 }
