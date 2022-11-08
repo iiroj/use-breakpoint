@@ -106,9 +106,23 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
         updateBreakpoint(event, breakpoint as Breakpoint<C>)
       }
 
-      list.addListener(handleChange)
+      const supportsNewEventListeners =
+        'addEventListener' in list && 'removeEventListener' in list
+
+      if (supportsNewEventListeners) {
+        list.addEventListener('change', handleChange)
+      } else {
+        list.addListener(handleChange)
+      }
+
       /** Map the unsubscribers array to a list of unsubscriber methods */
-      return () => list.removeListener(handleChange)
+      return () => {
+        if (supportsNewEventListeners) {
+          list.removeEventListener('change', handleChange)
+        } else {
+          list.removeListener(handleChange)
+        }
+      }
     })
 
     /** Return a function that when called, will call all unsubscribers */
