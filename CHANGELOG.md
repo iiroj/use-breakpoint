@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/iiroj/use-breakpoint/compare/v3.0.3...v3.0.4) (2022-11-18)
+
+
+### Bug Fixes
+
+* use MediaQueryList change event when supported ([1b7d7f8](https://github.com/iiroj/use-breakpoint/commit/1b7d7f88f05ba039254a147b98229bf36ade1f7c))
+
 ### [3.0.3](https://github.com/iiroj/use-breakpoint/compare/v3.0.2...v3.0.3) (2022-06-10)
 
 
