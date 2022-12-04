@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "prerelease": "npm run prerelease"
-  }
-}

@@ -5,7 +5,10 @@
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "license": "MIT",
   "homepage": "https://github.com/iiroj/use-breakpoint",
-  "repository": "github:iiroj/use-breakpoint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iiroj/iiro.fi.git"
+  },
   "bugs": "https://github.com/iiroj/use-breakpoint/issues",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
@@ -25,9 +28,7 @@
     "lint": "npm run lint:base -- .",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "jest",
-    "build": "tsc --build tsconfig.build.json",
-    "prerelease": "npm run lint && npm run typecheck && npm test && npm run build",
-    "version": "standard-version --no-verify"
+    "build": "tsc --build tsconfig.build.json"
   },
   "peerDependencies": {
     "react": ">=16.8",
@@ -69,19 +70,16 @@
     "prettier": "^2.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "standard-version": "^9.5.0",
     "storybook-addon-swc": "1.1.9",
     "swc-loader": "^0.2.3",
     "typescript": "^4.9.3",
     "webpack": "^5.75.0"
   },
   "keywords": [
-    "babel",
     "breakpoint",
     "matchMedia",
     "react",
     "responsive",
-    "storybook",
     "typescript",
     "viewport",
     "window.matchMedia"
