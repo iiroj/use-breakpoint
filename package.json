@@ -11,11 +11,12 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "type": "module",
-  "exports": "./index.js",
-  "types": "./index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
   "files": [
-    "*.d.ts",
-    "*.js"
+    "dist/*"
   ],
   "sideEffects": false,
   "scripts": {

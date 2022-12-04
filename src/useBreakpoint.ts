@@ -112,7 +112,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
       if (supportsNewEventListeners) {
         list.addEventListener('change', handleChange)
       } else {
-        list.addListener(handleChange)
+        ;(list as MediaQueryList).addListener(handleChange)
       }
 
       /** Map the unsubscribers array to a list of unsubscriber methods */
@@ -120,7 +120,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
         if (supportsNewEventListeners) {
           list.removeEventListener('change', handleChange)
         } else {
-          list.removeListener(handleChange)
+          ;(list as MediaQueryList).removeListener(handleChange)
         }
       }
     })

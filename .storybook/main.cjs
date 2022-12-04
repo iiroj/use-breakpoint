@@ -19,4 +19,12 @@ module.exports = {
     },
   },
   stories: ['../story.tsx'],
+  webpackFinal: async (config) => {
+    config.resolve.extensionAlias = {
+      '.js': ['.ts', '.js'],
+      '.mjs': ['.mts', '.mjs'],
+    }
+
+    return config
+  },
 }

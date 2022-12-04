@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import useBreakpoint from './index'
+import useBreakpoint from './src'
 
 const config = { mobile: 0, tablet: 768, desktop: 1280 }
 
