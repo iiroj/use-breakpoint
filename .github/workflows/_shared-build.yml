@@ -29,5 +29,5 @@ jobs:
       - if: ${{ inputs.artifact }}
         uses: actions/upload-artifact@v3
         with:
-          name: artifact
+          name: use-breakpoint
           path: use-breakpoint.tgz
