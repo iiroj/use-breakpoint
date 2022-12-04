@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/iiroj/use-breakpoint/compare/v3.0.4...v3.0.5) (2022-12-04)
+
+
+### Bug Fixes
+
+* **deps:** update all dependencies ([2d66006](https://github.com/iiroj/use-breakpoint/commit/2d66006496b076c6b23ee2652e829060c14559d1))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
