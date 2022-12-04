@@ -1,12 +1,15 @@
 {
   "collectCoverage": true,
   "collectCoverageFrom": [
-    "*.js"
+    "src/**/*"
   ],
   "coveragePathIgnorePatterns": [
     "node_modules",
     "!*.d.ts"
   ],
+  "moduleNameMapper": {
+    "^(\\.{1,2}/.*)\\.js$": "$1"
+  },
   "testEnvironment": "node",
   "transform": {
     "^.+\\.(t|j)sx?$": [
