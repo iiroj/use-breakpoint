@@ -5,16 +5,16 @@ on:
 
 jobs:
   Install:
-    uses: ./.github/workflows/shared/install.yml
+    uses: ./.github/workflows/_shared-install.yml
 
   Lint:
     needs: Install
-    uses: ./.github/workflows/shared/lint.yml
+    uses: ./.github/workflows/_shared-lint.yml
 
   Typecheck:
     needs: Install
-    uses: ./.github/workflows/shared/typecheck.yml
+    uses: ./.github/workflows/_shared-typecheck.yml
 
   Build:
     needs: Install
-    uses: ./.github/workflows/shared/build.yml
+    uses: ./.github/workflows/_shared-build.yml

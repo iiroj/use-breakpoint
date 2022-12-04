@@ -10,10 +10,10 @@ concurrency: production_release
 
 jobs:
   Install:
-    uses: ./.github/workflows/shared/install.yml
+    uses: ./.github/workflows/_shared-install.yml
 
   Build:
-    uses: ./.github/workflows/shared/build.yml
+    uses: ./.github/workflows/_shared-build.yml
     with:
       artifact: true
 
