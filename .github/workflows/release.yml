@@ -13,6 +13,7 @@ jobs:
     uses: ./.github/workflows/_shared-install.yml
 
   Build:
+    needs: Install
     uses: ./.github/workflows/_shared-build.yml
     with:
       artifact: true
