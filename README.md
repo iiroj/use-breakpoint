@@ -3,8 +3,6 @@
 [![GitHub Actions](https://github.com/iiroj/use-breakpoint/workflows/Tags/badge.svg)](https://github.com/iiroj/use-breakpoint/actions)
 [![version](https://img.shields.io/npm/v/use-breakpoint.svg)](https://www.npmjs.com/package/use-breakpoint)
 [![code size](https://img.shields.io/github/languages/code-size/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint)
-[![dependencies](https://img.shields.io/david/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint/blob/master/package.json)
-[![devDependencies](https://img.shields.io/david/dev/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint/blob/master/package.json)
 
 A React hook (>=16.8) for getting the current responsive media breakpoint, successor to [breakpoint-observer](https://www.npmjs.com/package/breakpoint-observer).
 
