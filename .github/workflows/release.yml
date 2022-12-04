@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  push:
+    tags:
+      # Semver-like tags "v1.0.0"
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+concurrency: production_release
+
+jobs:
+  Install:
+    uses: ./.github/workflows/install.yml
+
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: actions/cache@v2
+        id: cache-node_modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      - run: npm run build
+      - run: npm pack
+      - run: mv *.tgz use-breakpoint.tgz
+      - uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: use-breakpoint.tgz
+
+  publish-npm:
+    name: Publish to npm
+    needs: Install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifact
+      - run: tar xf artifact/use-breakpoint.tgz --strip 1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-gpr:
+    name: Publish to GitHub Package Registry
+    needs: Install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifact
+      - run: tar xf artifact/use-breakpoint.tgz --strip 1
+      - run: |-
+          sed -i"" -E "s|\"name\": \".*\"|\"name\": \"@${GITHUB_REPOSITORY}\"|" package.json
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
