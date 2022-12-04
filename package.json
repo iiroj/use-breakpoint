@@ -34,6 +34,12 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.2.0",
+    "@semantic-release/changelog": "6.0.2",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "8.0.7",
+    "@semantic-release/npm": "9.0.1",
+    "@semantic-release/release-notes-generator": "10.0.3",
     "@storybook/addon-storysource": "^6.5.13",
     "@storybook/builder-webpack5": "6.5.13",
     "@storybook/manager-webpack5": "6.5.13",
