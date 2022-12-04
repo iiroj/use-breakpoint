@@ -15,6 +15,10 @@ jobs:
   Typecheck:
     needs: Install
     uses: ./.github/workflows/_shared-typecheck.yml
+  
+  Test:
+    needs: Install
+    uses: ./.github/workflows/_shared-test.yml
 
   Build:
     needs: Install
