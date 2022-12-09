@@ -1,3 +1,10 @@
+## [3.0.6](https://github.com/iiroj/use-breakpoint/compare/v3.0.5...v3.0.6) (2022-12-09)
+
+
+### Bug Fixes
+
+* add `main` field to package.json for better backwards-compatibility ([2af567e](https://github.com/iiroj/use-breakpoint/commit/2af567ee6a686919ed32d4bdb39ac30705bd1c83))
+
 ## [3.0.5](https://github.com/iiroj/use-breakpoint/compare/v3.0.4...v3.0.5) (2022-12-04)
 
 
