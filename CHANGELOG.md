@@ -1,3 +1,11 @@
+## [3.0.7](https://github.com/iiroj/use-breakpoint/compare/v3.0.6...v3.0.7) (2023-02-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies ([c04d4d8](https://github.com/iiroj/use-breakpoint/commit/c04d4d82b4c8950035e888c231897ecfef685cad))
+* disable Storybook telemetry ([4b9320f](https://github.com/iiroj/use-breakpoint/commit/4b9320f1b97fa32ca0e1d99bf64f2993a56eb08a))
+
 ## [3.0.6](https://github.com/iiroj/use-breakpoint/compare/v3.0.5...v3.0.6) (2022-12-09)
 
 
