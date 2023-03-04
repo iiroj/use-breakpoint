@@ -1,10 +1,14 @@
-module.exports = {
+export default {
   addons: [
     {
       name: '@storybook/addon-storysource',
       options: {
-        rule: { test: [/story\.tsx?$/] },
-        loaderOptions: { parser: 'typescript' },
+        rule: {
+          test: [/story\.tsx?$/],
+        },
+        loaderOptions: {
+          parser: 'typescript',
+        },
       },
     },
     {
@@ -12,12 +16,15 @@ module.exports = {
     },
   ],
   core: {
-    builder: 'webpack5',
     disableTelemetry: true,
     options: {
       fsCache: true,
       lazyCompilation: true,
     },
+  },
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
   },
   stories: ['../story.tsx'],
   webpackFinal: async (config) => {
@@ -25,7 +32,6 @@ module.exports = {
       '.js': ['.ts', '.js'],
       '.mjs': ['.mts', '.mjs'],
     }
-
     return config
   },
 }

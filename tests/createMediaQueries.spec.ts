@@ -1,4 +1,4 @@
-import createMediaQueries from '../src/createMediaQueries'
+import createMediaQueries from '../src/createMediaQueries.js'
 
 describe('createMediaQueries', () => {
   it('should return min-width query', () => {

@@ -4,7 +4,6 @@
     "declaration": true,
     "declarationDir": ".",
     "incremental": true,
-    "isolatedModules": true,
     "jsx": "react",
     "lib": ["dom", "ESNext"],
     "module": "ESNext",
@@ -12,6 +11,7 @@
     "noEmit": true,
     "strict": true,
     "target": "ESNext",
+    "verbatimModuleSyntax": true
   },
   "include": [".storybook/*.js", "**/*.js", "**/*.ts", "**/*.tsx"],
   "exclude": ["coverage", "node_modules"]

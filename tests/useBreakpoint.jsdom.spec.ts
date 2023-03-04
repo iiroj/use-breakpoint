@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 
-import useBreakpoint from '../src'
+import useBreakpoint from '../src/index.js'
 import { act, renderHook } from '@testing-library/react'
 import MatchMediaMock from 'jest-matchmedia-mock'
 import { useDebugValue } from 'react'
@@ -13,16 +13,12 @@ const mockUseDebugValue = useDebugValue as jest.Mock<typeof useDebugValue>
 
 const CONFIG = { mobile: 0, tablet: 768, desktop: 1280 }
 
-let matchMedia: MatchMediaMock
-
 describe('useBreakpoint', () => {
-  beforeAll(() => {
-    matchMedia = new MatchMediaMock()
-  })
+  const matchMedia = new MatchMediaMock()
 
   afterEach(() => {
     matchMedia.clear()
-    mockUseDebugValue.mockClear()
+    jest.resetAllMocks()
   })
 
   it('should return undefined breakpoint value client-side when nothing matches', () => {
