@@ -1,4 +1,4 @@
-import useBreakpoint from '../src'
+import useBreakpoint from '../src/index.js'
 import { renderToStaticMarkup } from 'react-dom/server'
 import * as React from 'react'
 
