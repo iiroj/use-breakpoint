@@ -3,8 +3,10 @@
   "compilerOptions": {
     "declarationDir": "dist",
     "noEmit": false,
-    "outDir": "dist",
-    "rootDir": "src"
+    "module": "CommonJS",
+    "target": "ES6",
+    "lib": ["dom", "ES6"],
+    "outDir": "dist/cjs"
   },
   "include": [
     "src/**/*.ts"
