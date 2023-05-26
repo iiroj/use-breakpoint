@@ -6,12 +6,12 @@
 
 A React hook (>=16.8) for getting the current responsive media breakpoint, successor to [breakpoint-observer](https://www.npmjs.com/package/breakpoint-observer).
 
-## Usage
+## `useBreakpoint`
 
 Initialize `useBreakpoint` with a configuration object, and optionally a default breakpoint name (in non-window environments like SSR). The return value will be an object with the breakpoint's name (`string`), min-width, and max-width values (`number`):
 
 ```javascript
-import useBreakpoint from 'use-breakpoint';
+import useBreakpoint from 'use-breakpoint'
 
 /**
  * It is important to bind the object of breakpoints to a variable for memoization to work correctly.
@@ -20,9 +20,12 @@ import useBreakpoint from 'use-breakpoint';
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }
 
 const CurrentBreakpoint = () => {
-  const { breakpoint, maxWidth, minWidth } = useBreakpoint(BREAKPOINTS, 'desktop');
-  return <p>The current breakpoint is {breakpoint}!</p>;
-};
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint(
+    BREAKPOINTS,
+    'desktop'
+  )
+  return <p>The current breakpoint is {breakpoint}!</p>
+}
 ```
 
 ### Return values
@@ -30,15 +33,15 @@ const CurrentBreakpoint = () => {
 Given a configuration `BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }` and a window size of `1280x960`, the hook will return as the breakpoint:
 
 1. `const { breakpoint } = useBreakpoint(BREAKPOINTS)`
-    - `undefined` when rendered server-side
-    - `'desktop'` when rendered client-side
+   - `undefined` when rendered server-side
+   - `'desktop'` when rendered client-side
 1. `const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile')`
-    - `'mobile'` when rendered server-side
-    - `'mobile'` on the first client-side render
-    - `'desktop'` on subsequent client-side renders
+   - `'mobile'` when rendered server-side
+   - `'mobile'` on the first client-side render
+   - `'desktop'` on subsequent client-side renders
 1. `const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile', false)`
-    - `'mobile'` when rendered server-side
-    - `'desktop'` when rendered client-side
+   - `'mobile'` when rendered server-side
+   - `'desktop'` when rendered client-side
 
 ### Hydration
 
@@ -64,9 +67,28 @@ const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile', false)
 
 Now `breakpoint === 'mobile'` server-side, but `breakpoint === 'desktop'` client-side during the first render. You should probably use `ReactDOM.render` instead of `ReactDOM.hydrate` in this case.
 
-## Functionality
+### Functionality
 
 This hook uses the [window.matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) functionality to calculate the current breakpoint. For a list of breakpoints, we generate some css media queries in the form of `(min-width: XXXpx) and (max-width: YYYpx)` and then add listeners for the changes. `useBreakpoint` will then update its return value when the breakpoint changes from one rule to another.
+
+## `getCSSMediaQueries`
+
+To use the same breakpoint configuration in CSS-in-JS, you can use the `getCSSMediaQueries` helper:
+
+```javascript
+import { getCSSMediaQueries } from 'use-breakpoint'
+
+const BREAKPOINTS = { mobile: -1, tablet: 768, desktop: 1280 }
+
+const cssQueries = getCSSMediaQueries(BREAKPOINTS, 'screen')
+// {
+//    desktop: "@media only screen and (min-width: 1280px)",
+//    mobile: "@media only screen and (max-width: 767px)",
+//    tablet: "@media only screen and (min-width: 768px) and (max-width: 1279px)",
+//  }
+```
+
+The second option can be omitted to leave out the media type condition.
 
 ## Developing
 
