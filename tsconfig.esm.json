@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declarationDir": "dist/esm",
+    "noEmit": false,
+    "outDir": "dist/esm",
+    "rootDir": "src",
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src/**/*.ts"]
+}

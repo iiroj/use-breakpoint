@@ -1,14 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "declarationDir": "dist",
-    "noEmit": false,
+    "declarationDir": "dist/cjs",
     "module": "CommonJS",
-    "target": "ES6",
-    "lib": ["dom", "ES6"],
-    "outDir": "dist/cjs"
+    "moduleResolution": "node",
+    "noEmit": false,
+    "outDir": "dist/cjs",
+    "rootDir": "src"
   },
-  "include": [
-    "src/**/*.ts"
-  ]
+  "include": ["src/**/*.ts"]
 }
