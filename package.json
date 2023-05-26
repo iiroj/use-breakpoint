@@ -14,15 +14,14 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "main": "./dist/cjs/index.js",
-  "module": "/dist/mjs/index.js",
+  "module": "./dist/esm/index.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/mjs/index.js",
+      "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     }
   },
-  "types": "./dist/index.d.ts",
+  "types": "./dist/esm/index.d.ts",
   "files": [
     "dist/*"
   ],
@@ -33,9 +32,11 @@
     "lint": "npm run lint:base -- .",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "jest",
-    "build:esm": "tsc --build tsconfig.mjs.json",
+    "build:esm": "tsc --build tsconfig.esm.json",
     "build:cjs": "tsc --build tsconfig.cjs.json",
-    "build": "npm run build:esm && npm run build:cjs && ./package-fixup.sh"
+    "prebuild": "rm -rf dist",
+    "build": "npm run build:esm && npm run build:cjs",
+    "postbuild": "./scripts/emit-package-json.sh"
   },
   "peerDependencies": {
     "react": ">=16.8",
