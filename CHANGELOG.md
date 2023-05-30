@@ -1,3 +1,11 @@
+## [3.1.0](https://github.com/iiroj/use-breakpoint/compare/v3.0.7...v3.1.0) (2023-05-30)
+
+
+### Features
+
+* add `getCSSMediaQueries` helper ([86fabb8](https://github.com/iiroj/use-breakpoint/commit/86fabb862cba5ce08e847f3b314d55836999acd5))
+* build and package cjs version ([d5b6d29](https://github.com/iiroj/use-breakpoint/commit/d5b6d296d6d6689e70e26e4454f9efcdae01e1fa))
+
 ## [3.0.7](https://github.com/iiroj/use-breakpoint/compare/v3.0.6...v3.0.7) (2023-02-16)
 
 
