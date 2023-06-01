@@ -1,5 +1,5 @@
-import type { Config, MediaQuery } from './createMediaQueries'
-import createMediaQueries from './createMediaQueries'
+import type { Config } from './createMediaQueries.js'
+import createMediaQueries from './createMediaQueries.js'
 
 /**
  * Get CSS native media queries for given breakpoint configuration.
