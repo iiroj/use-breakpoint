@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/iiroj/use-breakpoint/compare/v3.1.0...v3.1.1) (2023-06-01)
+
+
+### Bug Fixes
+
+* add missing file extension to imports ([#21](https://github.com/iiroj/use-breakpoint/issues/21)) ([d3f0c21](https://github.com/iiroj/use-breakpoint/commit/d3f0c21b2b22b3c865c1dee28e4aa044a4a7a91e)), closes [#20](https://github.com/iiroj/use-breakpoint/issues/20)
+
 ## [3.1.0](https://github.com/iiroj/use-breakpoint/compare/v3.0.7...v3.1.0) (2023-05-30)
 
 
