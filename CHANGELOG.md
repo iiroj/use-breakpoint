@@ -1,3 +1,15 @@
+## [4.0.0](https://github.com/iiroj/use-breakpoint/compare/v3.1.1...v4.0.0) (2023-10-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Because of the new implementation relying on useSyncExternalStore(),
+React version 18 is required to use useBreakpoint().
+
+### Features
+
+* use useSyncExternalStore() hook, require React 18 ([20a93bc](https://github.com/iiroj/use-breakpoint/commit/20a93bc3b985514279b006a8936e3b25441eb6b4))
+
 ## [3.1.1](https://github.com/iiroj/use-breakpoint/compare/v3.1.0...v3.1.1) (2023-06-01)
 
 
