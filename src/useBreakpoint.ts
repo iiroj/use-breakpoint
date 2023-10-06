@@ -50,7 +50,7 @@ type Return<C extends Config, D> = D extends undefined
 const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   config: C,
   defaultBreakpoint?: D,
-  hydrateInitial = true
+  hydrateInitial = true,
 ): Return<C, D> => {
   /** Memoize list of calculated media queries from config */
   const mediaQueries = useMemo(() => createMediaQueries(config), [config])
@@ -87,13 +87,13 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   const updateBreakpoint = useCallback(
     (
       { matches }: MediaQueryList | MediaQueryListEvent,
-      breakpoint: Breakpoint<C>
+      breakpoint: Breakpoint<C>,
     ) => {
       if (matches) {
         setCurrentBreakpoint(breakpoint)
       }
     },
-    []
+    [],
   )
 
   /** On changes to mediaQueries, subscribe to changes using window.matchMedia */
@@ -135,7 +135,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
       ? `${c.breakpoint} (${c.minWidth} ≤ x${
           c.maxWidth ? ` < ${c.maxWidth + 1}` : ''
         })`
-      : ''
+      : '',
   )
 
   return currentBreakpoint as Return<C, D>

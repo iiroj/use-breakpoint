@@ -64,7 +64,7 @@ export const HydrateInitialFalse = (): JSX.Element => {
   const { breakpoint, minWidth, maxWidth } = useBreakpoint(
     config,
     'mobile',
-    false
+    false,
   )
 
   React.useEffect(() => {

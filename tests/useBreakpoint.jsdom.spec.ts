@@ -55,7 +55,7 @@ describe('useBreakpoint', () => {
     expect(mockUseDebugValue).toHaveBeenCalledTimes(1)
     expect(mockUseDebugValue.mock.calls[0][0]).toEqual(EXPECTED)
     expect(mockUseDebugValue.mock.calls[0][1](EXPECTED)).toEqual(
-      'tablet (768 ≤ x < 1280)'
+      'tablet (768 ≤ x < 1280)',
     )
   })
 
@@ -75,7 +75,7 @@ describe('useBreakpoint', () => {
     expect(mockUseDebugValue).toHaveBeenCalledTimes(2)
     expect(mockUseDebugValue.mock.calls[1][0]).toEqual(EXPECTED)
     expect(mockUseDebugValue.mock.calls[1][1](EXPECTED)).toEqual(
-      'mobile (0 ≤ x < 768)'
+      'mobile (0 ≤ x < 768)',
     )
   })
 
@@ -95,7 +95,7 @@ describe('useBreakpoint', () => {
     expect(mockUseDebugValue).toHaveBeenCalledTimes(2)
     expect(mockUseDebugValue.mock.calls[1][0]).toEqual(EXPECTED)
     expect(mockUseDebugValue.mock.calls[1][1](EXPECTED)).toEqual(
-      'desktop (1280 ≤ x)'
+      'desktop (1280 ≤ x)',
     )
   })
 
@@ -125,7 +125,7 @@ describe('useBreakpoint', () => {
     expect(mockUseDebugValue).toHaveBeenCalledTimes(3)
     expect(mockUseDebugValue.mock.calls[2][0]).toEqual(EXPECTED)
     expect(mockUseDebugValue.mock.calls[2][1](EXPECTED)).toEqual(
-      'desktop (1280 ≤ x)'
+      'desktop (1280 ≤ x)',
     )
   })
 })

@@ -15,7 +15,7 @@ export type MediaQuery<C extends Config> = {
  */
 const createMediaQueries = (breakpoints: Config): MediaQuery<Config>[] => {
   const sortedBreakpoints = Object.keys(breakpoints).sort(
-    (a, b) => breakpoints[b] - breakpoints[a]
+    (a, b) => breakpoints[b] - breakpoints[a],
   )
 
   return sortedBreakpoints.map((breakpoint, index) => {

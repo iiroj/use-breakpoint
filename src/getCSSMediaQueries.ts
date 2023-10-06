@@ -25,10 +25,10 @@ import createMediaQueries from './createMediaQueries.js'
  */
 const getCSSMediaQueries = <
   C extends Config,
-  Q extends Record<keyof C, string>
+  Q extends Record<keyof C, string>,
 >(
   breakpoints: C,
-  type?: 'all' | 'print' | 'screen'
+  type?: 'all' | 'print' | 'screen',
 ): Q => {
   const typePrefix = type ? `only ${type} and ` : ''
   const queries = createMediaQueries(breakpoints)
