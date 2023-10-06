@@ -1,19 +1,25 @@
-import { useMemo, useState, useCallback, useDebugValue } from 'react'
+import {
+  useMemo,
+  useCallback,
+  useDebugValue,
+  useSyncExternalStore,
+} from 'react'
 
 import createMediaQueries from './createMediaQueries.js'
 import type { Config } from './createMediaQueries.js'
-import useIsomorphicEffect from './useIsomorphicEffect.js'
 
 export type Breakpoint<C extends Config> = {
   breakpoint: keyof C
   maxWidth?: number | null
   minWidth: C[keyof C]
+  query: string
 }
 
 const EMPTY_BREAKPOINT = {
-  breakpoint: undefined,
-  minWidth: undefined,
-  maxWidth: undefined,
+  breakpoint: null,
+  minWidth: null,
+  maxWidth: null,
+  query: null,
 } as const
 
 type Return<C extends Config, D> = D extends undefined
@@ -27,7 +33,6 @@ type Return<C extends Config, D> = D extends undefined
  * Will listen to changes using the window.matchMedia API.
  * @param {*} config the list of configured breakpoint names and their pixel values
  * @param {*} [defaultBreakpoint] the optional default breakpoint
- * @param {*} [hydrateInitial] whether to return the default breakpoint on first render. Set to `false` if the real breakpoint should be returned instead. Only applies to the browser, not server-side.
  *
  * @example
  * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
@@ -40,94 +45,76 @@ type Return<C extends Config, D> = D extends undefined
  * ...
  * const result = useBreakpoint(breakpoints, 'mobile')
  * // breakpoint: { breakpoint: string; minWidth: number; maxWidth: number | null }
- *
- * @example <caption>With default value, but not hydrated. This means the breakpoint might be different on the initial render.</caption>
- * const breakpoints = { mobile: 0, tablet: 768, desktop: 1280 }
- * ...
- * const result = useBreakpoint(breakpoints, 'mobile', false)
- * // breakpoint: { breakpoint: string; minWidth: number; maxWidth: number | null }
  */
 const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   config: C,
   defaultBreakpoint?: D,
-  hydrateInitial = true,
 ): Return<C, D> => {
   /** Memoize list of calculated media queries from config */
   const mediaQueries = useMemo(() => createMediaQueries(config), [config])
 
-  /** Get initial breakpoint value */
-  const [currentBreakpoint, setCurrentBreakpoint] = useState<
-    Breakpoint<C> | typeof EMPTY_BREAKPOINT
-  >(() => {
-    /** Loop through all media queries */
-    for (const { query, ...breakpoint } of mediaQueries) {
-      /**
-       * If we're in the browser and there's no default value,
-       * try to match actual breakpoint. If the default value
-       * should not be hydrated, use the actual breakpoint.
-       */
-      if (
-        typeof window !== 'undefined' &&
-        !(defaultBreakpoint && hydrateInitial)
-      ) {
-        const mediaQuery = window.matchMedia(query)
-        if (mediaQuery.matches) {
-          return breakpoint as Breakpoint<C>
+  const subscribe = useCallback(
+    (callback: () => void) => {
+      const unsubscribers: (() => void)[] = []
+
+      mediaQueries.forEach(({ query, ...breakpoint }) => {
+        const list = window.matchMedia(query)
+
+        const supportsNewEventListeners =
+          'addEventListener' in list && 'removeEventListener' in list
+
+        if (supportsNewEventListeners) {
+          list.addEventListener('change', callback)
+        } else {
+          ;(list as MediaQueryList).addListener(callback)
         }
-      } else if (breakpoint.breakpoint === defaultBreakpoint) {
-        /** Otherwise, try to match default value */
-        return breakpoint as Breakpoint<C>
-      }
-    }
 
-    return EMPTY_BREAKPOINT
-  })
+        /** Map the unsubscribers array to a list of unsubscriber methods */
+        unsubscribers.push(
+          supportsNewEventListeners
+            ? () => list.removeEventListener('change', callback)
+            : () => (list as MediaQueryList).removeListener(callback),
+        )
+      })
 
-  /** If there's a match, update the current breakpoint */
-  const updateBreakpoint = useCallback(
-    (
-      { matches }: MediaQueryList | MediaQueryListEvent,
-      breakpoint: Breakpoint<C>,
-    ) => {
-      if (matches) {
-        setCurrentBreakpoint(breakpoint)
-      }
+      /** Return a function that when called, will call all unsubscribers */
+      return () => unsubscribers.forEach((unsubscriber) => unsubscriber())
     },
-    [],
+    [mediaQueries],
   )
 
-  /** On changes to mediaQueries, subscribe to changes using window.matchMedia */
-  useIsomorphicEffect(() => {
-    const unsubscribers = mediaQueries.map(({ query, ...breakpoint }) => {
-      const list = window.matchMedia(query)
-      updateBreakpoint(list, breakpoint as Breakpoint<C>)
-
-      const handleChange = (event: MediaQueryListEvent) => {
-        updateBreakpoint(event, breakpoint as Breakpoint<C>)
+  const getSnapshot = useCallback(() => {
+    const match = mediaQueries.find((mediaQuery) => {
+      /**
+       * If we're in the browser and there's no default value,
+       * try to match actual breakpoint.
+       */
+      if (window.matchMedia(mediaQuery.query).matches) {
+        return true
       }
 
-      const supportsNewEventListeners =
-        'addEventListener' in list && 'removeEventListener' in list
-
-      if (supportsNewEventListeners) {
-        list.addEventListener('change', handleChange)
-      } else {
-        ;(list as MediaQueryList).addListener(handleChange)
+      /** Otherwise, try to match default value */
+      if (mediaQuery.breakpoint === defaultBreakpoint) {
+        return true
       }
+    }) as Breakpoint<C> | undefined
 
-      /** Map the unsubscribers array to a list of unsubscriber methods */
-      return () => {
-        if (supportsNewEventListeners) {
-          list.removeEventListener('change', handleChange)
-        } else {
-          ;(list as MediaQueryList).removeListener(handleChange)
-        }
-      }
-    })
+    return match ?? EMPTY_BREAKPOINT
+  }, [defaultBreakpoint, mediaQueries])
 
-    /** Return a function that when called, will call all unsubscribers */
-    return () => unsubscribers.forEach((unsubscriber) => unsubscriber())
-  }, [mediaQueries, updateBreakpoint])
+  const getServerSnapshot = useCallback(() => {
+    const match = mediaQueries.find(
+      (mediaQuery) => defaultBreakpoint === mediaQuery.breakpoint,
+    ) as Breakpoint<C> | undefined
+
+    return match ?? EMPTY_BREAKPOINT
+  }, [defaultBreakpoint, mediaQueries])
+
+  const currentBreakpoint = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  )
 
   /** Print a nice debug value for React Devtools */
   useDebugValue(currentBreakpoint, (c) =>

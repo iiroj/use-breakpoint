@@ -22,7 +22,7 @@ const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }
 const CurrentBreakpoint = () => {
   const { breakpoint, maxWidth, minWidth } = useBreakpoint(
     BREAKPOINTS,
-    'desktop'
+    'desktop',
   )
   return <p>The current breakpoint is {breakpoint}!</p>
 }
@@ -39,9 +39,6 @@ Given a configuration `BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }` 
    - `'mobile'` when rendered server-side
    - `'mobile'` on the first client-side render
    - `'desktop'` on subsequent client-side renders
-1. `const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile', false)`
-   - `'mobile'` when rendered server-side
-   - `'desktop'` when rendered client-side
 
 ### Hydration
 
@@ -53,19 +50,7 @@ For example, given a breakpoint config:
 const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile')
 ```
 
-When rendered server-side, `breakpoint === 'mobile'` always, because there is no window.
-
-On client-side with a `desktop`-sized window, on the first render `breakpoint === 'mobile'`, and then on following renders `breakpoint === 'desktop'`.
-
-This is to ensure `ReactDOM.hydrate` behaves correctly.
-
-To disable this behavior, pass `false` as the third argument:
-
-```ts
-const { breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile', false)
-```
-
-Now `breakpoint === 'mobile'` server-side, but `breakpoint === 'desktop'` client-side during the first render. You should probably use `ReactDOM.render` instead of `ReactDOM.hydrate` in this case.
+When rendered server-side, `breakpoint === 'mobile'` always, because there is no window. On client-side with a `desktop`-sized window, on the first render `breakpoint === 'mobile'`, and then on following renders `breakpoint === 'desktop'`. This is to ensure `ReactDOM.hydrate` behaves correctly. The implementation relies on the [`useSyncExternalStore` React hook](https://react.dev/reference/react/useSyncExternalStore) with the `getServerSnapshot` callback.
 
 ### Functionality
 

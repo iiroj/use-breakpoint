@@ -27,16 +27,17 @@ describe('useBreakpoint', () => {
     const { result } = renderHook(() => useBreakpoint(CONFIG))
 
     const EXPECTED = {
-      breakpoint: undefined,
-      minWidth: undefined,
-      maxWidth: undefined,
+      breakpoint: null,
+      minWidth: null,
+      maxWidth: null,
+      query: null,
     }
 
-    expect(result.current).toEqual(EXPECTED)
+    expect(result.current).toStrictEqual(EXPECTED)
 
     expect(mockUseDebugValue).toHaveBeenCalledTimes(1)
-    expect(mockUseDebugValue.mock.calls[0][0]).toEqual(EXPECTED)
-    expect(mockUseDebugValue.mock.calls[0][1](EXPECTED)).toEqual('')
+    expect(mockUseDebugValue.mock.calls[0][0]).toStrictEqual(EXPECTED)
+    expect(mockUseDebugValue.mock.calls[0][1](EXPECTED)).toStrictEqual('')
   })
 
   it('should return default value client-side when set', () => {
@@ -48,13 +49,14 @@ describe('useBreakpoint', () => {
       breakpoint: 'tablet',
       minWidth: 768,
       maxWidth: 1279,
+      query: '(min-width: 768px) and (max-width: 1279px)',
     }
 
-    expect(result.current).toEqual(EXPECTED)
+    expect(result.current).toStrictEqual(EXPECTED)
 
     expect(mockUseDebugValue).toHaveBeenCalledTimes(1)
-    expect(mockUseDebugValue.mock.calls[0][0]).toEqual(EXPECTED)
-    expect(mockUseDebugValue.mock.calls[0][1](EXPECTED)).toEqual(
+    expect(mockUseDebugValue.mock.calls[0][0]).toStrictEqual(EXPECTED)
+    expect(mockUseDebugValue.mock.calls[0][1](EXPECTED)).toStrictEqual(
       'tablet (768 ≤ x < 1280)',
     )
   })
@@ -68,34 +70,15 @@ describe('useBreakpoint', () => {
       breakpoint: 'mobile',
       minWidth: 0,
       maxWidth: 767,
+      query: '(min-width: 0px) and (max-width: 767px)',
     }
 
-    expect(result.current).toEqual(EXPECTED)
+    expect(result.current).toStrictEqual(EXPECTED)
 
-    expect(mockUseDebugValue).toHaveBeenCalledTimes(2)
-    expect(mockUseDebugValue.mock.calls[1][0]).toEqual(EXPECTED)
-    expect(mockUseDebugValue.mock.calls[1][1](EXPECTED)).toEqual(
+    expect(mockUseDebugValue).toHaveBeenCalledTimes(1)
+    expect(mockUseDebugValue.mock.calls[0][0]).toStrictEqual(EXPECTED)
+    expect(mockUseDebugValue.mock.calls[0][1](EXPECTED)).toStrictEqual(
       'mobile (0 ≤ x < 768)',
-    )
-  })
-
-  it('should return correct breakpoint client-side with default value and hydrateInitial=false', () => {
-    matchMedia.useMediaQuery('(min-width: 1280px)')
-
-    const { result } = renderHook(() => useBreakpoint(CONFIG, 'mobile', false))
-
-    const EXPECTED = {
-      breakpoint: 'desktop',
-      minWidth: 1280,
-      maxWidth: null,
-    }
-
-    expect(result.current).toEqual(EXPECTED)
-
-    expect(mockUseDebugValue).toHaveBeenCalledTimes(2)
-    expect(mockUseDebugValue.mock.calls[1][0]).toEqual(EXPECTED)
-    expect(mockUseDebugValue.mock.calls[1][1](EXPECTED)).toEqual(
-      'desktop (1280 ≤ x)',
     )
   })
 
@@ -104,10 +87,11 @@ describe('useBreakpoint', () => {
 
     const { result } = renderHook(() => useBreakpoint(CONFIG))
 
-    expect(result.current).toEqual({
+    expect(result.current).toStrictEqual({
       breakpoint: 'mobile',
       minWidth: 0,
       maxWidth: 767,
+      query: '(min-width: 0px) and (max-width: 767px)',
     })
 
     act(() => {
@@ -118,13 +102,14 @@ describe('useBreakpoint', () => {
       breakpoint: 'desktop',
       minWidth: 1280,
       maxWidth: null,
+      query: '(min-width: 1280px)',
     }
 
-    expect(result.current).toEqual(EXPECTED)
+    expect(result.current).toStrictEqual(EXPECTED)
 
-    expect(mockUseDebugValue).toHaveBeenCalledTimes(3)
-    expect(mockUseDebugValue.mock.calls[2][0]).toEqual(EXPECTED)
-    expect(mockUseDebugValue.mock.calls[2][1](EXPECTED)).toEqual(
+    expect(mockUseDebugValue).toHaveBeenCalledTimes(2)
+    expect(mockUseDebugValue.mock.calls[1][0]).toStrictEqual(EXPECTED)
+    expect(mockUseDebugValue.mock.calls[1][1](EXPECTED)).toStrictEqual(
       'desktop (1280 ≤ x)',
     )
   })
