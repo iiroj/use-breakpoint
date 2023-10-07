@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/iiroj/use-breakpoint/compare/v4.0.0...v4.0.1) (2023-10-07)
+
+
+### Bug Fixes
+
+* **docs:** update README with current required React version ([6dbd397](https://github.com/iiroj/use-breakpoint/commit/6dbd39766995cb822433e97989b40d5ed32b3f28))
+
 ## [4.0.0](https://github.com/iiroj/use-breakpoint/compare/v3.1.1...v4.0.0) (2023-10-06)
 
 
