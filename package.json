@@ -7,7 +7,7 @@
   "homepage": "https://github.com/iiroj/use-breakpoint",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iiroj/iiro.fi.git"
+    "url": "https://github.com/iiroj/use-breakpoint.git"
   },
   "bugs": "https://github.com/iiroj/use-breakpoint/issues",
   "main": "./dist/cjs/index.js",
