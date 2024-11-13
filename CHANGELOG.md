@@ -1,3 +1,9 @@
+## [4.0.2](https://github.com/iiroj/use-breakpoint/compare/v4.0.1...v4.0.2) (2024-11-13)
+
+### Bug Fixes
+
+* **npm:** link to correct repository ([7fa6217](https://github.com/iiroj/use-breakpoint/commit/7fa621719f6d0b14e35011fe87b8a1473b1269cc))
+
 ## [4.0.1](https://github.com/iiroj/use-breakpoint/compare/v4.0.0...v4.0.1) (2023-10-07)
 
 
