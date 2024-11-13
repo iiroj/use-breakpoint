@@ -1,10 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 
 import useBreakpoint from './src/index.js'
 
 const config = { mobile: 0, tablet: 768, desktop: 1280 }
 
-export const WithoutDefaultValue = (): JSX.Element => {
+export const WithoutDefaultValue = (): React.JSX.Element => {
   const { breakpoint, minWidth, maxWidth } = useBreakpoint(config)
 
   React.useEffect(() => {
@@ -32,7 +32,7 @@ export const WithoutDefaultValue = (): JSX.Element => {
   )
 }
 
-export const WithDefaultValue = (): JSX.Element => {
+export const WithDefaultValue = (): React.JSX.Element => {
   const { breakpoint, minWidth, maxWidth } = useBreakpoint(config, 'mobile')
 
   React.useEffect(() => {

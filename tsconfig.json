@@ -11,6 +11,6 @@
     "strict": true,
     "target": "ESNext"
   },
-  "include": [".storybook/*.js", "**/*.js", "**/*.ts", "**/*.tsx"],
-  "exclude": ["coverage", "node_modules"]
+  "include": [".storybook/*.ts", "**/*.js", "**/*.ts", "**/*.tsx", "**/*.mjs"],
+  "exclude": ["coverage", "node_modules", "dist"]
 }

@@ -1,14 +1,14 @@
 import {
-  useMemo,
   useCallback,
   useDebugValue,
+  useMemo,
   useSyncExternalStore,
 } from 'react'
 
-import createMediaQueries from './createMediaQueries.js'
 import type { Config } from './createMediaQueries.js'
+import createMediaQueries from './createMediaQueries.js'
 
-export type Breakpoint<C extends Config> = {
+export interface Breakpoint<C extends Config> {
   breakpoint: keyof C
   maxWidth?: number | null
   minWidth: C[keyof C]
@@ -25,8 +25,8 @@ const EMPTY_BREAKPOINT = {
 type Return<C extends Config, D> = D extends undefined
   ? Breakpoint<C> | typeof EMPTY_BREAKPOINT
   : D extends keyof C
-  ? Breakpoint<C>
-  : never
+    ? Breakpoint<C>
+    : never
 
 /**
  * A React hook to use the current responsive breakpoint.
@@ -57,7 +57,7 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
     (callback: () => void) => {
       const unsubscribers: (() => void)[] = []
 
-      mediaQueries.forEach(({ query, ...breakpoint }) => {
+      mediaQueries.forEach(({ query }) => {
         const list = window.matchMedia(query)
 
         const supportsNewEventListeners =

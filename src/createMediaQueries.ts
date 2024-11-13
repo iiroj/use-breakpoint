@@ -1,8 +1,6 @@
-export type Config = {
-  readonly [key: string]: number
-}
+export type Config = Readonly<Record<string, number>>
 
-export type MediaQuery<C extends Config> = {
+export interface MediaQuery<C extends Config> {
   breakpoint: keyof C
   maxWidth: number | null
   minWidth: C[keyof C]

@@ -1,6 +1,7 @@
-import useBreakpoint from '../src/index.js'
+import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import * as React from 'react'
+
+import useBreakpoint from '../src/index.js'
 
 const CONFIG = { mobile: 0, tablet: 768, desktop: 1280 }
 
