@@ -4,7 +4,7 @@ on:
   push:
     tags:
       # Semver-like tags "v1.0.0"
-      - "v[0-9]+.[0-9]+.[0-9]+"
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 concurrency: production_release
 
@@ -23,11 +23,11 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: use-breakpoint
       - run: tar xf use-breakpoint.tgz --strip 1
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
@@ -42,13 +42,13 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: use-breakpoint
       - run: tar xf use-breakpoint.tgz --strip 1
       - run: |-
           sed -i"" -E "s|\"name\": \".*\"|\"name\": \"@${GITHUB_REPOSITORY}\"|" package.json
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: https://npm.pkg.github.com/

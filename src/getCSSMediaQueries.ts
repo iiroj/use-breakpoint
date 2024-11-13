@@ -33,11 +33,13 @@ const getCSSMediaQueries = <
   const typePrefix = type ? `only ${type} and ` : ''
   const queries = createMediaQueries(breakpoints)
 
-  return queries.reduce((queries, { breakpoint, query }) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    queries[breakpoint as any] = `@media ${typePrefix}${query}`
-    return queries
-  }, {} as Q)
+  return queries.reduce<Q>(
+    (queries, { breakpoint, query }) => ({
+      ...queries,
+      [breakpoint]: `@media ${typePrefix}${query}`,
+    }),
+    {} as Q,
+  )
 }
 
 export default getCSSMediaQueries
