@@ -43,8 +43,10 @@ jobs:
   publish-gpr:
     name: Publish to GitHub Package Registry
     permissions:
+      attestations: write
       contents: read
       id-token: write
+      packages: write
     needs: Build
     runs-on: ubuntu-latest
     steps:
