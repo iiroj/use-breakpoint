@@ -1,3 +1,9 @@
+## [4.0.4](https://github.com/iiroj/use-breakpoint/compare/v4.0.3...v4.0.4) (2024-11-18)
+
+### Bug Fixes
+
+* set correct write permissions for npm provenance ([088bcec](https://github.com/iiroj/use-breakpoint/commit/088bceca66423609a729247d6e5ba4a6f959443d))
+
 ## [4.0.3](https://github.com/iiroj/use-breakpoint/compare/v4.0.2...v4.0.3) (2024-11-18)
 
 ### Bug Fixes
