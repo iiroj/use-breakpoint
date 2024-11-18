@@ -1,3 +1,9 @@
+## [4.0.3](https://github.com/iiroj/use-breakpoint/compare/v4.0.2...v4.0.3) (2024-11-18)
+
+### Bug Fixes
+
+* only match default breakpoint, if none of the queries match ([91bad17](https://github.com/iiroj/use-breakpoint/commit/91bad17b910361a13d1752783ef3382392e6a2dd))
+
 ## [4.0.2](https://github.com/iiroj/use-breakpoint/compare/v4.0.1...v4.0.2) (2024-11-13)
 
 ### Bug Fixes
