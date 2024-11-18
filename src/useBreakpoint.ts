@@ -84,30 +84,27 @@ const useBreakpoint = <C extends Config, D extends keyof C | undefined>(
   )
 
   const getSnapshot = useCallback(() => {
-    const match = mediaQueries.find((mediaQuery) => {
-      /**
-       * If we're in the browser and there's no default value,
-       * try to match actual breakpoint.
-       */
-      if (window.matchMedia(mediaQuery.query).matches) {
-        return true
-      }
+    const mediaMatch = mediaQueries.find(
+      (mediaQuery) => window.matchMedia(mediaQuery.query).matches,
+    )
+    if (mediaMatch) return mediaMatch
 
-      /** Otherwise, try to match default value */
-      if (mediaQuery.breakpoint === defaultBreakpoint) {
-        return true
-      }
-    }) as Breakpoint<C> | undefined
+    if (defaultBreakpoint) {
+      const defaultMatch = mediaQueries.find(
+        (mediaQuery) => mediaQuery.breakpoint === defaultBreakpoint,
+      )
+      if (defaultMatch) return defaultMatch
+    }
 
-    return match ?? EMPTY_BREAKPOINT
+    return EMPTY_BREAKPOINT
   }, [defaultBreakpoint, mediaQueries])
 
   const getServerSnapshot = useCallback(() => {
-    const match = mediaQueries.find(
-      (mediaQuery) => defaultBreakpoint === mediaQuery.breakpoint,
-    ) as Breakpoint<C> | undefined
+    const defaultMatch = mediaQueries.find(
+      (mediaQuery) => mediaQuery.breakpoint === defaultBreakpoint,
+    )
 
-    return match ?? EMPTY_BREAKPOINT
+    return defaultMatch ?? EMPTY_BREAKPOINT
   }, [defaultBreakpoint, mediaQueries])
 
   const currentBreakpoint = useSyncExternalStore(

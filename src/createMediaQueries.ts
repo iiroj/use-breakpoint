@@ -11,14 +11,16 @@ export interface MediaQuery<C extends Config> {
  * Create media query objects
  * @param breakpoints the list of configured breakpoint names and their pixel values
  */
-const createMediaQueries = (breakpoints: Config): MediaQuery<Config>[] => {
+const createMediaQueries = <C extends Config>(
+  breakpoints: C,
+): MediaQuery<C>[] => {
   const sortedBreakpoints = Object.keys(breakpoints).sort(
     (a, b) => breakpoints[b] - breakpoints[a],
   )
 
   return sortedBreakpoints.map((breakpoint, index) => {
     let query = ''
-    const minWidth = breakpoints[breakpoint]
+    const minWidth = breakpoints[breakpoint] as C[keyof C]
     const nextBreakpoint = sortedBreakpoints[index - 1] as string | undefined
     const maxWidth = nextBreakpoint ? breakpoints[nextBreakpoint] : null
 
@@ -33,7 +35,7 @@ const createMediaQueries = (breakpoints: Config): MediaQuery<Config>[] => {
       query += `(max-width: ${maxWidth - 1}px)`
     }
 
-    const mediaQuery: MediaQuery<Config> = {
+    const mediaQuery = {
       breakpoint,
       maxWidth: maxWidth ? maxWidth - 1 : null,
       minWidth,

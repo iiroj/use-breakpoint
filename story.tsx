@@ -33,7 +33,7 @@ export const WithoutDefaultValue = (): React.JSX.Element => {
 }
 
 export const WithDefaultValue = (): React.JSX.Element => {
-  const { breakpoint, minWidth, maxWidth } = useBreakpoint(config, 'mobile')
+  const { breakpoint, minWidth, maxWidth } = useBreakpoint(config, 'desktop')
 
   React.useEffect(() => {
     console.log('breakpoint', breakpoint)
