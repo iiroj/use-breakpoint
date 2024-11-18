@@ -20,6 +20,9 @@ jobs:
 
   publish-npm:
     name: Publish to npm
+    permissions:
+      contents: read
+      id-token: write
     needs: Build
     runs-on: ubuntu-latest
     steps:
@@ -39,6 +42,9 @@ jobs:
 
   publish-gpr:
     name: Publish to GitHub Package Registry
+    permissions:
+      contents: read
+      id-token: write
     needs: Build
     runs-on: ubuntu-latest
     steps:
@@ -54,6 +60,6 @@ jobs:
           registry-url: https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: npm publish --access public
+      - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
