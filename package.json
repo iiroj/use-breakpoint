@@ -80,6 +80,5 @@
     "typescript",
     "viewport",
     "window.matchMedia"
-  ],
-  "packageManager": "pnpm@8.5.1+sha1.97019f5a8ec2416123506419ab36dd558e4c72eb"
+  ]
 }
