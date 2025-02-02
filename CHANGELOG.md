@@ -1,3 +1,9 @@
+## [4.0.6](https://github.com/iiroj/use-breakpoint/compare/v4.0.5...v4.0.6) (2025-02-02)
+
+### Bug Fixes
+
+* **deps:** update dev dependencies ([4660750](https://github.com/iiroj/use-breakpoint/commit/466075002bf51b9ac0c9fef02d735850f68cf71c))
+
 ## [4.0.5](https://github.com/iiroj/use-breakpoint/compare/v4.0.4...v4.0.5) (2024-11-18)
 
 ### Bug Fixes
