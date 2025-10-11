@@ -32,7 +32,7 @@ jobs:
       - run: tar xf use-breakpoint.tgz --strip 1
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version-file: .node-version
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
       - run: npm publish --provenance --access public

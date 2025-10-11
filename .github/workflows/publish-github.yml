@@ -36,7 +36,7 @@ jobs:
           sed -i"" -E "s|\"name\": \".*\"|\"name\": \"@${GITHUB_REPOSITORY}\"|" package.json
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version-file: .node-version
           registry-url: https://npm.pkg.github.com/
           package-manager-cache: false
         env:

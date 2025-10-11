@@ -39,7 +39,7 @@ jobs:
           token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version-file: .node-version
           package-manager-cache: false
       - uses: actions/cache@v4
         id: cache-node_modules
