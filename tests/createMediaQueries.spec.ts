@@ -1,7 +1,9 @@
+import { describe, it } from 'vitest'
+
 import createMediaQueries from '../src/createMediaQueries.js'
 
 describe('createMediaQueries', () => {
-  it('should return min-width query', () => {
+  it('should return min-width query', ({ expect }) => {
     const queries = createMediaQueries({ mobile: 0 })
     expect(queries).toMatchInlineSnapshot(`
       [
@@ -15,7 +17,7 @@ describe('createMediaQueries', () => {
     `)
   })
 
-  it('should return max-width query', () => {
+  it('should return max-width query', ({ expect }) => {
     const queries = createMediaQueries({ tablet: 768 })
     expect(queries).toMatchInlineSnapshot(`
       [
@@ -29,7 +31,7 @@ describe('createMediaQueries', () => {
     `)
   })
 
-  it('should return min-width and, max-width queries', () => {
+  it('should return min-width and, max-width queries', ({ expect }) => {
     const queries = createMediaQueries({ mobile: 0, tablet: 768 })
     expect(queries).toMatchInlineSnapshot(`
       [
@@ -49,7 +51,7 @@ describe('createMediaQueries', () => {
     `)
   })
 
-  it('should handle negative min-width', () => {
+  it('should handle negative min-width', ({ expect }) => {
     const queries = createMediaQueries({ mobile: -1, tablet: 768 })
     expect(queries).toMatchInlineSnapshot(`
       [

@@ -1,3 +1,4 @@
+import { describe, it } from 'vitest'
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
@@ -6,7 +7,9 @@ import useBreakpoint from '../src/index.js'
 const CONFIG = { mobile: 0, tablet: 768, desktop: 1280 }
 
 describe('useBreakpoint', () => {
-  it('should return undefined value server-side when default not set', () => {
+  it('should return undefined value server-side when default not set', ({
+    expect,
+  }) => {
     const Test = () => {
       const { breakpoint } = useBreakpoint(CONFIG)
       return <>{breakpoint}</>
@@ -16,7 +19,7 @@ describe('useBreakpoint', () => {
     expect(result).toEqual('')
   })
 
-  it('should return default value server-side when set', () => {
+  it('should return default value server-side when set', ({ expect }) => {
     const Test = () => {
       const { breakpoint } = useBreakpoint(CONFIG, 'mobile')
       return <>{breakpoint}</>

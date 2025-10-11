@@ -1,3 +1,5 @@
+import { describe, it } from 'vitest'
+
 import getCSSMediaQueries from '../src/getCSSMediaQueries.js'
 
 describe('createMediaQueries', () => {
@@ -7,7 +9,9 @@ describe('createMediaQueries', () => {
     desktop: 1024,
   }
 
-  it('should return record of breakpoints and CSS media queries', () => {
+  it('should return record of breakpoints and CSS media queries', ({
+    expect,
+  }) => {
     const queries = getCSSMediaQueries(breakpoints)
     expect(queries).toMatchInlineSnapshot(`
       {
@@ -18,7 +22,7 @@ describe('createMediaQueries', () => {
     `)
   })
 
-  it('should support additional type option', () => {
+  it('should support additional type option', ({ expect }) => {
     const queries = getCSSMediaQueries(breakpoints, 'screen')
     expect(queries).toMatchInlineSnapshot(`
       {
