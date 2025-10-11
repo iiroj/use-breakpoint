@@ -1,3 +1,9 @@
+## [4.0.10](https://github.com/iiroj/use-breakpoint/compare/v4.0.9...v4.0.10) (2025-10-11)
+
+### Bug Fixes
+
+* **npm:** fix usage of npm Trusted Publisher ([902c3f2](https://github.com/iiroj/use-breakpoint/commit/902c3f24b07c8754456535f2c3889a31da0551ce))
+
 ## [4.0.9](https://github.com/iiroj/use-breakpoint/compare/v4.0.8...v4.0.9) (2025-10-11)
 
 ### Bug Fixes
