@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      # Semver-like tags "v1.0.0"
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+concurrency: production_release
+
+jobs:
+  Install:
+    uses: ./.github/workflows/_shared-install.yml
+
+  Build:
+    needs: Install
+    uses: ./.github/workflows/_shared-build.yml
+    with:
+      artifact: true
+
+  publish-npm:
+    name: Publish to npm
+    permissions:
+      contents: read
+      id-token: write
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: use-breakpoint
+      - run: tar xf use-breakpoint.tgz --strip 1
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm publish --provenance --access public

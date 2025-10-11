@@ -1,4 +1,4 @@
-name: Release
+name: Publish
 
 on:
   push:
@@ -18,25 +18,7 @@ jobs:
     with:
       artifact: true
 
-  publish-npm:
-    name: Publish to npm
-    permissions:
-      contents: read
-      id-token: write
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v5
-        with:
-          name: use-breakpoint
-      - run: tar xf use-breakpoint.tgz --strip 1
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          registry-url: https://registry.npmjs.org
-      - run: npm publish --provenance --access public
-
-  publish-gpr:
+  publish-github:
     name: Publish to GitHub Package Registry
     permissions:
       attestations: write
@@ -56,6 +38,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com/
+          package-manager-cache: false
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm publish --provenance --access public
