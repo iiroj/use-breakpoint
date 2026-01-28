@@ -1,8 +1,7 @@
 # use-breakpoint
 
-[![GitHub Actions](https://github.com/iiroj/use-breakpoint/workflows/Tags/badge.svg)](https://github.com/iiroj/use-breakpoint/actions)
-[![version](https://img.shields.io/npm/v/use-breakpoint.svg)](https://www.npmjs.com/package/use-breakpoint)
-[![code size](https://img.shields.io/github/languages/code-size/iiroj/use-breakpoint.svg)](https://github.com/iiroj/use-breakpoint)
+> [!CAUTION]
+> This package is no longer maintained and will not be updated on registry.npmjs.com. You can copy the source directly into your own code to keep using it.
 
 A React hook (>=18) for getting the current responsive media breakpoint.
 
